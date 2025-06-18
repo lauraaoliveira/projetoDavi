@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login e Cadastro de Usuário</title>
+</head>
+<body>
+
+  <h1>Formulários de Acesso</h1>
+
+  <div id="login-form-container">
+    <h2>Login de Usuário</h2>
+    <form action="php/login_usuario.php" method="post">
+      <p><input type="email" name="email" placeholder="Email do usuário" required></p>
+      <p><input type="password" name="senha" placeholder="Senha" required></p>
+      <p><input type="submit" value="Entrar"></p>
+    </form>
+  </div>
+
+  <div id="cadastro-form-container">
+    <h2>Cadastre-se preenchendo os campos abaixo</h2>
+    <form action="php/cadastrar_usuario.php" method="post">
+      <p><input type="text" name="nome" placeholder="Nome completo" required></p>
+      <p><input type="email" name="email" placeholder="Email" required></p>
+      <p><input type="password" name="senha" placeholder="Senha" required></p>
+      <p><input type="submit" value="Cadastrar"></p>
+    </form>
+  </div>
+
+</body>
+</html>
