@@ -15,7 +15,7 @@
 
       $id_usuario = $_SESSION['id'];
 
-      $sql = "SELECT qtd_oleo, solicitado FROM usuarios WHERE id_usuario = :id";
+      $sql = "SELECT qtd_oleo, solicitado, qtd_para_coletar FROM usuarios WHERE id_usuario = :id";
 
       $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':id', $id_usuario);
@@ -24,6 +24,7 @@
 
       $qtd_oleo = $dados['qtd_oleo'];
       $solicitado = $dados['solicitado'];
+      $qtd_para_coletar = $dados['qtd_para_coletar'];
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -42,16 +43,46 @@
   <p>Aqui é a "tela do usuario", apenas pra provar q fez login e testar as funcionalidades</p>
   <p>já que será tudo na tela inical</p>
   
-  <p>Quantidade atual de óleo: <?php echo $qtd_oleo; ?> litros</p>
+  <p>Quantidade total de óleo: <?php echo $qtd_oleo; ?> <?php echo $qtd_oleo == 1? "garrafa" : "garrafas"?></p>
 
+
+  <h3><?php if($solicitado) echo "Você possui uma solicitação pendente"?></h3>
+  <!-- adicionar óleo -->
   <form action="adicionar_oleo.php" method="post">
-    <p><input type="submit" value="+1 oleo"></p>
+    <p><input type="submit" value="+1 oleo" <?php if($solicitado) echo 'disabled'; ?> ></p>
   </form>
 
+  
+  <!-- =========== MODAL PARA SOLICITAR A COLETA ================= -->
+  <button class="btn-open-modal" data-modal="modal-4" 
+  <?php if($solicitado || $qtd_oleo == 0  ) echo 'disabled'; ?>
+  >
+  <?php echo !$solicitado ? 'Solicitar coleta' : 'Coleta solicitada'; ?>
+</button>
+
+<dialog id="modal-4">
+  
+  <h2>Modal para solicitar a coleta</h1>
+  <button class="btn-close-modal" data-modal="modal-4">X</button>
+  
+  <!-- =========== FORMULÁRIO PARA INFORMAR QUANTO SERÁ COLETADO ================= -->
+  <form action="solicitar_coleta.php" method="post">
+    <h2> Você irá solicitar a coleta para <?php echo $qtd_oleo?> <?php echo $qtd_oleo == 1? "garrafa" : "garrafas"?></h2>
+    <p>
+      <input type="submit" value="confirmar">
+    </p>
+  </form>
+    <button class="btn-close-modal" data-modal="modal-4">Cancelar</button>
+    
+  </dialog>
+  
+
+  <!-- excluir conta -->
   <form action="../excluir_conta.php" method="post">
     <p><input type="submit" value="Excluir conta"></p>
   </form>
   <p><a href="../logout.php">Sair</a></p>
 
+  <script src="../../js/modal.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $qtd_oleo = 0;
         $solicitado = 0;
+        $qtd_para_coletar = 0;
 
         $nome = $_POST["nome"];
         $email = $_POST["email"];
@@ -19,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $logradouroUsuario = $_POST['logradouro_usuario'];
 
 
-        $sql = "INSERT INTO usuarios (nome, email, senha, logradouro_usuario, qtd_oleo, solicitado) VALUES (:nome, :email, :senha, :logradouro_usuario, :qtd_oleo, :solicitado)";
+        $sql = "INSERT INTO usuarios (nome, email, senha, logradouro_usuario, qtd_oleo, solicitado, qtd_para_coletar) VALUES (:nome, :email, :senha, :logradouro_usuario, :qtd_oleo, :solicitado, :qtd_para_coletar)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":nome", $nome);
         $stmt->bindParam(":email", $email);
@@ -27,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(":logradouro_usuario", $logradouroUsuario);
         $stmt->bindParam(":qtd_oleo", $qtd_oleo);
         $stmt->bindParam(":solicitado", $solicitado);
+        $stmt->bindParam(":qtd_para_coletar", $qtd_para_coletar);
 
         $stmt->execute();
         echo "Usuário cadastrado com sucesso!";
