@@ -16,7 +16,7 @@ try {
         $tipo = $_POST['tipo'];
 
         if ($tipo == 'usuario') {
-            $sql = "SELECT * FROM usuario WHERE email = :email AND senha = :senha";
+            $sql = "SELECT * FROM usuarios WHERE email = :email AND senha = :senha";
         } elseif ($tipo == 'empresa') {
             $sql = "SELECT * FROM empresa WHERE email_empresa = :email AND senha = :senha";
         } else {

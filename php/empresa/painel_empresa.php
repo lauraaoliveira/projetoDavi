@@ -18,6 +18,10 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 'empresa') {
 
   
   <p>Aqui é a "tela da empresa", apenas pra provar q fez login e testar as funcionalidades</p>
+
+  <form action="../excluir_conta.php" method="post">
+    <p><input type="submit" value="Excluir conta"></p>
+  </form>
   
   <p><a href="../logout.php">Sair</a></p>
 

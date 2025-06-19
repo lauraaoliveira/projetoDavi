@@ -19,6 +19,9 @@ if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 'usuario') {
   <p>Aqui é a "tela do usuario", apenas pra provar q fez login e testar as funcionalidades</p>
   <p>já que será tudo na tela inical</p>
 
+  <form action="../excluir_conta.php" method="post">
+    <p><input type="submit" value="Excluir conta"></p>
+  </form>
   <p><a href="../logout.php">Sair</a></p>
 
 </body>
