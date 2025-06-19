@@ -15,9 +15,11 @@
 
       if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_usuario'])) {
         $id_usuario = $_POST['id_usuario'];
+        $nome_empresa = $_SESSION['nome'];
 
-        $sql = "UPDATE usuarios SET solicitado = 0, qtd_para_coletar = 0 WHERE id_usuario = :id";
+        $sql = "UPDATE usuarios SET solicitado = 0, qtd_para_coletar = 0, empresa_aceitou = :empresa WHERE id_usuario = :id";
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':empresa', $nome_empresa);
         $stmt->bindParam(':id', $id_usuario);
         $stmt->execute();
 

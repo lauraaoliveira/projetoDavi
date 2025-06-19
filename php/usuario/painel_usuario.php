@@ -15,7 +15,7 @@
 
       $id_usuario = $_SESSION['id'];
 
-      $sql = "SELECT qtd_oleo, solicitado, qtd_para_coletar FROM usuarios WHERE id_usuario = :id";
+      $sql = "SELECT qtd_oleo, solicitado, qtd_para_coletar, empresa_aceitou FROM usuarios WHERE id_usuario = :id";
 
       $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':id', $id_usuario);
@@ -25,6 +25,7 @@
       $qtd_oleo = $dados['qtd_oleo'];
       $solicitado = $dados['solicitado'];
       $qtd_para_coletar = $dados['qtd_para_coletar'];
+      $nome_empresa_aceitou = $dados['empresa_aceitou'];
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -47,6 +48,11 @@
 
 
   <h3><?php if($solicitado) echo "Você possui uma solicitação pendente"?></h3>
+  <h4>
+    <?php if ($nome_empresa_aceitou): ?>
+      <p>A empresa <strong><?php echo $nome_empresa_aceitou; ?></strong> aceitou sua solicitação de coleta. Aguarde!</p>
+    <?php endif; ?>
+  </h4>
   <!-- adicionar óleo -->
   <form action="adicionar_oleo.php" method="post">
     <p><input type="submit" value="+1 oleo" <?php if($solicitado) echo 'disabled'; ?> ></p>

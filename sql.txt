@@ -18,5 +18,6 @@ CREATE TABLE usuarios (
     senha VARCHAR(12) NOT NULL,
     qtd_oleo INT,
     solicitado BOOLEAN,
-    qtd_para_coletar INT
+    qtd_para_coletar INT,
+    empresa_aceitou VARCHAR (100) DEFAULT NULL
  );
