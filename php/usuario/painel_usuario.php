@@ -55,7 +55,7 @@
   </h4>
   <!-- adicionar óleo -->
   <form action="adicionar_oleo.php" method="post">
-    <p><input type="submit" value="+1 oleo" <?php if($solicitado) echo 'disabled'; ?> ></p>
+    <p><input type="submit" value="+1 oleo"></p>
   </form>
 
   
