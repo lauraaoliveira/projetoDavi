@@ -7,8 +7,7 @@ CREATE TABLE empresa (
     telefone_empresa VARCHAR(20),
     email_empresa VARCHAR(150) UNIQUE,
     senha VARCHAR(12) NOT NULL
- );
-
+);
 
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,7 +16,15 @@ CREATE TABLE usuarios (
     email VARCHAR(100) NOT NULL UNIQUE,
     senha VARCHAR(12) NOT NULL,
     qtd_oleo INT,
-    solicitado BOOLEAN,
-    qtd_para_coletar INT,
-    empresa_aceitou VARCHAR (100) DEFAULT NULL
- );
+    solicitado BOOLEAN
+);
+
+CREATE TABLE coletas (
+    id_coleta INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_empresa INT DEFAULT NULL,
+    quantidade INT NOT NULL,
+    status VARCHAR(50) DEFAULT 'pendente',
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    FOREIGN KEY (id_empresa) REFERENCES empresa(id_empresa)
+);

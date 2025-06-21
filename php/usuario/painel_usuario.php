@@ -15,7 +15,7 @@
 
       $id_usuario = $_SESSION['id'];
 
-      $sql = "SELECT qtd_oleo, solicitado, qtd_para_coletar, empresa_aceitou FROM usuarios WHERE id_usuario = :id";
+      $sql = "SELECT qtd_oleo, solicitado FROM usuarios WHERE id_usuario = :id";
 
       $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':id', $id_usuario);
@@ -24,8 +24,24 @@
 
       $qtd_oleo = $dados['qtd_oleo'];
       $solicitado = $dados['solicitado'];
-      $qtd_para_coletar = $dados['qtd_para_coletar'];
-      $nome_empresa_aceitou = $dados['empresa_aceitou'];
+
+      $nome_empresa_aceitou = "";
+
+      $sql = "SELECT e.nome_fantasia
+              FROM coletas c
+              JOIN empresa e ON c.id_empresa = e.id_empresa
+              WHERE c.id_usuario = :id_usuario AND c.status IN ('aceita', 'finalizada')
+              LIMIT 1";
+
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':id_usuario', $id_usuario);
+      $stmt->execute();
+
+      $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      if ($resultado) {
+          $nome_empresa_aceitou = $resultado['nome_fantasia'];
+      }
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -43,12 +59,14 @@
 
   <p>Aqui é a "tela do usuario", apenas pra provar q fez login e testar as funcionalidades</p>
   <p>já que será tudo na tela inical</p>
+
+  <h3>Você tem: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo": " garrafas de óleo"?></h3>
   
-  <h3><p>Você possui: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo disponível para coleta": " garrafas de óleo disponíveis para coleta"?> </p></h3>
-  <h3><?php if($solicitado) echo "Você possui uma solicitação pendente"?></h3>
   <h4>
     <?php if ($nome_empresa_aceitou): ?>
       <p>A empresa <strong><?php echo $nome_empresa_aceitou; ?></strong> aceitou sua solicitação de coleta. Aguarde!</p>
+    <?php elseif ($solicitado): ?>
+      <p>Você possui uma solicitação pendente, aguarde uma empresa aceitar!</p>
     <?php endif; ?>
   </h4>
 
@@ -84,8 +102,7 @@
   
   <h2>Modal para solicitar a coleta</h1>
   <button class="btn-close-modal" data-modal="modal-4">X</button>
-  
-  <!-- =========== FORMULÁRIO PARA INFORMAR QUANTO SERÁ COLETADO ================= -->
+
   <form action="solicitar_coleta.php" method="post">
     <h2> Você irá solicitar a coleta para <?php echo $qtd_oleo?> <?php echo $qtd_oleo == 1? "garrafa" : "garrafas"?></h2>
     <p>

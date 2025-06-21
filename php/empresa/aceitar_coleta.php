@@ -1,32 +1,34 @@
 <?php
-  session_start();
-  if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 'empresa') {
-      header("Location: ../../index.html");
-      exit;
-  }
-    $host = "localhost";
-    $db = "projetooleo";
-    $user = "root";
-    $pass = "";
+session_start();
+if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 'empresa') {
+    header("Location: ../../index.html");
+    exit;
+}
 
-    try {
-      $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$host = "localhost";
+$db = "projetooleo";
+$user = "root";
+$pass = "";
 
-      if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_usuario'])) {
-        $id_usuario = $_POST['id_usuario'];
-        $nome_empresa = $_SESSION['nome'];
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "UPDATE usuarios SET solicitado = 0, qtd_para_coletar = 0, empresa_aceitou = :empresa WHERE id_usuario = :id";
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_coleta'])) {
+        $id_coleta = $_POST['id_coleta'];
+        $id_empresa = $_SESSION['id'];
+
+        $sql = "UPDATE coletas SET status = 'aceita', id_empresa = :id_empresa WHERE id_coleta = :id_coleta";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':empresa', $nome_empresa);
-        $stmt->bindParam(':id', $id_usuario);
+        $stmt->bindParam(':id_empresa', $id_empresa);
+        $stmt->bindParam(':id_coleta', $id_coleta);
         $stmt->execute();
 
         header("Location: painel_empresa.php");
         exit;
-      } 
-    } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
     }
+
+} catch (PDOException $e) {
+    echo "Erro: " . $e->getMessage();
+}
 ?>

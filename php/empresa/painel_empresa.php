@@ -13,11 +13,14 @@
       $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $sql = "SELECT * FROM usuarios WHERE solicitado = 1";
+      $sql = "SELECT c.*, u.nome, u.email, u.logradouro_usuario
+              FROM coletas c
+              JOIN usuarios u ON c.id_usuario = u.id_usuario
+              WHERE c.status = 'pendente'";
 
       $stmt = $pdo->prepare($sql);
       $stmt->execute();
-      $usuariosSolicitando = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $coletasPendentes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -37,27 +40,31 @@
   <p>Aqui é a "tela da empresa", apenas pra provar q fez login e testar as funcionalidades</p>
 
   <hr>
-  <h1>Aqui é a lista de usuários que solicitaram a coleta:</h1>
+  <button class="btn-open-modal" data-modal="modal-6">Coletas solicitadas</button>
 
-  <?php if (count($usuariosSolicitando) > 0): ?>
-    <ul>
-      <?php foreach ($usuariosSolicitando as $usuario): ?>
-        <li>
-          <strong>Nome:</strong> <?php echo $usuario['nome']; ?><br>
-          <strong>Email:</strong> <?php echo $usuario['email']; ?><br>
-          <strong>Endereço:</strong> <?php echo $usuario['logradouro_usuario']; ?><br>
-          <strong>Quantidade de Óleo para coletar:</strong> <?php echo $usuario['qtd_para_coletar']; ?> <?php echo $usuario['qtd_para_coletar'] == 1? "garrafa" : "garrafas"?>
-          <form action="aceitar_coleta.php" method="post">
-            <input type="hidden" name="id_usuario" value="<?php echo $usuario['id_usuario']; ?>">
-            <input type="submit" value="Aceitar Coleta">
-          </form>
-          <hr>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  <?php else: ?>
-    <p>Nenhum usuário solicitou coleta ainda.</p>
-  <?php endif; ?>
+  <dialog id="modal-6">
+    <?php if (count($coletasPendentes) > 0): ?>
+      <ul>
+        <?php foreach ($coletasPendentes as $coleta): ?>
+          <li>
+            <strong>Nome:</strong> <?php echo $coleta['nome']; ?><br>
+            <strong>Email:</strong> <?php echo $coleta['email']; ?><br>
+            <strong>Endereço:</strong> <?php echo $coleta['logradouro_usuario']; ?><br>
+            <strong>Quantidade:</strong> <?php echo $coleta['quantidade']; ?> garrafas<br>
+            <form action="aceitar_coleta.php" method="post">
+              <input type="hidden" name="id_coleta" value="<?php echo $coleta['id_coleta']; ?>">
+              <input type="submit" value="Aceitar Coleta">
+            </form>
+            <hr>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php else: ?>
+        <p>Nenhuma coleta pendente no momento.</p>
+    <?php endif; ?>
+  </dialog>
+
+  
 
   <form action="../excluir_conta.php" method="post">
     <p><input type="submit" value="Excluir conta"></p>
@@ -65,5 +72,6 @@
   
   <p><a href="../logout.php">Sair</a></p>
 
+  <script src="../../js/modal.js"></script>
 </body>
 </html>
