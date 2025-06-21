@@ -15,10 +15,12 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $id_usuario = $_SESSION['id'];
+    $quantidadeParaAdicionar = intval($_POST['quantidade']);
 
-    $sql = "UPDATE usuarios SET qtd_oleo = qtd_oleo + 1 WHERE id_usuario = :id";
+    $sql = "UPDATE usuarios SET qtd_oleo = qtd_oleo + :qtd WHERE id_usuario = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id_usuario);
+    $stmt->bindParam(':qtd', $quantidadeParaAdicionar);
     $stmt->execute();
 
     header("Location: painel_usuario.php");

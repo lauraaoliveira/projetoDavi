@@ -44,19 +44,33 @@
   <p>Aqui é a "tela do usuario", apenas pra provar q fez login e testar as funcionalidades</p>
   <p>já que será tudo na tela inical</p>
   
-  <p>Quantidade total de óleo: <?php echo $qtd_oleo; ?> <?php echo $qtd_oleo == 1? "garrafa" : "garrafas"?></p>
-
-
+  <h3><p>Você possui: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo disponível para coleta": " garrafas de óleo disponíveis para coleta"?> </p></h3>
   <h3><?php if($solicitado) echo "Você possui uma solicitação pendente"?></h3>
   <h4>
     <?php if ($nome_empresa_aceitou): ?>
       <p>A empresa <strong><?php echo $nome_empresa_aceitou; ?></strong> aceitou sua solicitação de coleta. Aguarde!</p>
     <?php endif; ?>
   </h4>
-  <!-- adicionar óleo -->
-  <form action="adicionar_oleo.php" method="post">
-    <p><input type="submit" value="+1 oleo"></p>
-  </form>
+
+
+  <!-- =========== MODAL PARA ADICIONAR OLEO ================= -->
+  <button class="btn-open-modal" data-modal="modal-5">Cadastrar óleo</button>
+  <dialog id="modal-5">
+    <p>Você tem: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo": " garrafas de óleo"?></p>
+    
+    <form action="adicionar_oleo.php" method="post">
+
+      <button type="button" onclick="alterarQuantidade(-1)">- 1</button>
+      <p>Adicionar <span id="contador">1</span> garrafas</p>
+      <button type="button" onclick="alterarQuantidade(1)">+ 1</button>
+
+      <input type="hidden" name="quantidade" id="quantidade" value="1">
+
+      <p><input type="submit" value="Confirmar"></p>
+      <button class="btn-close-modal" data-modal="modal-5">Cancelar</button>
+    </form>
+  </dialog>
+  
 
   
   <!-- =========== MODAL PARA SOLICITAR A COLETA ================= -->
@@ -90,5 +104,6 @@
   <p><a href="../logout.php">Sair</a></p>
 
   <script src="../../js/modal.js"></script>
+  <script src="../../js/contadorOleo.js"></script>
 </body>
 </html>

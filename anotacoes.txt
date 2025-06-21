@@ -1,6 +1,3 @@
-- modal "Cadastar oleo"
-- botão remover oleo no modal "Cadastrar oleo"
-
 - botão de confirmar
  - usuario
  - empresa
