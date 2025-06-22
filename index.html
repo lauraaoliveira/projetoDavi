@@ -23,7 +23,29 @@
           <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
         <a href="#" class="btn-login">Faça seu login</a>
+        <div class="logado">
+          <p class="usuario">Olá, [usuario]</p>
+          <a href="#" class="link">Sair</a>
+          <a href="#" class="link">Excluir conta</a>
+        </div>
+
       </nav>
+    </div>
+
+    <!-- Barra do usuário "residência" com informações de coleta -->
+    <div class="residencia">
+      <div class="residencia-content container">
+        <div class="coleta-aceita">
+          <img src="img/coleta.svg" alt="Coleta">
+          <h5>[nomeEmpresa] está a caminho para coleta de óleo em sua residência.</h5>
+          <a href="#" class="botao confirma">Confirmar coleta</a>
+        </div>
+        <h5 class="coleta-zerada">Você não possui coletas solicitas.</h5>
+        <h5 class="coleta-esperando">Há uma coleta pendente à espera de confirmação.</h5>
+        <h5>Você possui [n] litros de óleo cadastrados.</h5>
+        <a href="#" class="botao cadastro">Cadastrar óleo</a>
+        <a href="#" class="solicita botao">Solicitar coleta</a>
+      </div>
     </div>
   </header>
 
@@ -116,5 +138,31 @@
       </div>
     </div>
   </footer>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const header = document.querySelector("header");
+    const navLinks = document.querySelectorAll("a[href^='#']");
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const targetId = this.getAttribute("href").substring(1);
+        const targetEl = document.getElementById(targetId);
+
+        if (targetEl) {
+          const headerHeight = header.offsetHeight;
+          const elementTop = targetEl.getBoundingClientRect().top + window.scrollY;
+          const offsetTop = elementTop - headerHeight;
+
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
