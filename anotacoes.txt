@@ -1,7 +1,0 @@
-- botão de confirmar
- - usuario
- - empresa
-
-
-- empresa pode aceitar mais de uma solicitação
-- para isso precisa da tabela associativa ou uma tabela "coleta"
