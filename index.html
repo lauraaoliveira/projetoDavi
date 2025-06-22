@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Novolhar - Processamento de Óleo</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Cabeçalho com logotipo, navegação e botão de login -->
@@ -17,9 +18,9 @@
       </div>
       <nav>
         <ul class="nav-links">
-          <li><a href="#">Início</a></li>
-          <li><a href="#">Serviços</a></li>
-          <li><a href="#">Contato</a></li>
+          <li><a href="#inicio" class="nav-link" active>Início</a></li>
+          <li><a href="#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
         <a href="#" class="btn-login">Faça seu login</a>
       </nav>
@@ -27,7 +28,7 @@
   </header>
 
   <!-- Seção principal com chamada para ação -->
-  <section class="hero">
+  <section class="hero" id="inicio">
     <div class="container hero-content">
       <h2>Junte-se a nós para ajudar a preservar o meio ambiente</h2>
       <p>Nós da Novolhar estamos comprometidos em preservar os nossos recursos naturais.</p>
@@ -36,7 +37,7 @@
   </section>
 
   <!-- Seção de serviços -->
-  <section class="servicos">
+  <section class="servicos" id="servicos">
     <h3>Conheça os <span>NOSSOS SERVIÇOS</span></h3>
     <div class="container service-grid">
       <div class="service-card">
@@ -51,7 +52,7 @@
       </div>
       <div class="service-card">
         <img src="img/oleo_3.png" alt="Deixe sua opinião">
-        <h4>Deixe a sua opinião</h4>
+        <h4>Queremos saber a sua opinião</h4>
         <p>Escreva para a gente e dê sua opinião sobre o modelo de negócio</p>
       </div>
       <div class="service-card">
@@ -61,6 +62,8 @@
       </div>
     </div>
   </section>
+  
+  <div class="divisor"></div>
 
   <!-- Seção educativa -->
   <section class="info container">
@@ -68,28 +71,36 @@
       <img src="img/img_2.jpg" alt="Por que reciclar óleo">
       <div class="text">
         <h3>Por que você deve <span>RECICLAR O ÓLEO DE COZINHA UTILIZADO</span></h3>
-        <p>O descarte inadequado, como jogá-lo no ralo da pia ou no lixo comum, contamina a água, o solo e pode causar problemas de entupimento nas redes de esgoto...</p>
+        <p>O descarte inadequado, como jogá-lo no ralo da pia ou no lixo comum, contamina a água, o solo e pode causar problemas de entupimento nas redes de esgoto. Além disso, o óleo reciclado pode ser transformado em diversos produtos, como biodiesel, sabão e resinas, contribuindo para uma economia mais circular.</p>
         <a href="#" class="btn-secondary">Saiba mais</a>
       </div>
     </div>
   </section>
 
   <!-- Formulário de contato -->
-  <section class="contact">
-    <div class="container">
-      <h4><span>Tem alguma dúvida?</span><br>ENTRE EM CONTATO CONOSCO</h4>
-      <p>Ficaremos felizes em poder ajudar você a tirar as suas dúvidas quanto ao nosso processo de trabalho...</p>
-      <form>
-        <div class="form-row">
-          <input type="text" placeholder="Nome *" required>
-          <input type="text" placeholder="Sobrenome *" required>
-        </div>
-        <input type="email" placeholder="E-mail *" required>
-        <textarea placeholder="Mensagem*" required></textarea>
-        <button type="submit" class="btn-submit">Enviar</button>
-      </form>
+  <section class="contact" id="contato">
+  <div class="container contact-wrapper">
+    
+    <!-- Coluna esquerda: texto -->
+    <div class="contact-info">
+      <h3>Tem alguma dúvida?<span>ENTRE EM CONTATO CONOSCO</span></h3>
+      <p>
+        Ficaremos felizes em poder ajudar você a tirar as suas dúvidas quanto ao nosso processo de trabalho, como trabalhamos para ajudar o meio ambiente, ou mesmo sobre qual quer outro assunto sobre o qual você queira falar.
+      </p>
     </div>
-  </section>
+
+    <!-- Coluna direita: formulário -->
+    <form class="contact-form">
+      <div class="form-row">
+        <input type="text" placeholder="Nome *" required>
+        <input type="text" placeholder="Sobrenome *" required>
+      </div>
+      <input type="email" placeholder="E-mail*" required>
+      <textarea placeholder="Mensagem*" required></textarea>
+      <button type="submit" class="btn-submit">Enviar</button>
+    </form>
+  </div>
+</section>
 
   <!-- Rodapé -->
   <footer>
@@ -97,11 +108,11 @@
       <div class="footer-logo">
         <img src="img/logo_2.png" alt="Logo Novolhar">
       </div>
-      <p>© Copyright – Todos os direitos reservados</p>
+      <p class="copyright">© Copyright – Todos os direitos reservados</p>
       <div class="social">
-        <a href="https://www.facebook.com"><img src="img/facebook.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com"><img src="img/instagram.png" alt="Instagram"></a>
-        <a href="https://www.linkedin.com.br"><img src="img/linkedin.png" alt="LinkedIn"></a>
+        <a href="https://www.facebook.com"><img src="img/facebook.svg" alt="Facebook"></a>
+        <a href="https://www.instagram.com"><img src="img/instagram.svg" alt="Instagram"></a>
+        <a href="https://www.linkedin.com.br"><img src="img/linkedin.svg" alt="LinkedIn"></a>
       </div>
     </div>
   </footer>

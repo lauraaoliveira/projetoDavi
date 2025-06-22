@@ -6,8 +6,9 @@
 }
 
 body, html {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Lato', sans-serif;
   line-height: 1.6;
+  color: #58595b;
   scroll-behavior: smooth;
 }
 
@@ -16,9 +17,32 @@ img {
   display: block;
 }
 
+.divisor {
+  border-bottom: 4px solid #bdcf00;
+  margin: 5em auto; /* Espaçamento entre as seções */
+  width: 25%;
+}
+
 h4 {
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: 900;
+  line-height: 1.3em;
+  margin-bottom: 0.4em;
+}
+
+h3 {
+  color: #3e8e3e;
+  font-weight: 400;
+  font-size: 1.5em;
+}
+
+h3 span {
+  display: block;
+  color: #737577;
+  font-weight: bold;
+  font-size: 1.4em;
+  line-height: 1.2em;
+  margin-bottom: 20px;
 }
 
 .container {
@@ -61,16 +85,40 @@ nav {
   gap: 2rem;
 }
 
-.nav-links li a {
+.nav-link {
+  position: relative;
   color: white;
   text-decoration: none;
+  padding-bottom: 5px;
+  /* font-size: 1.2rem; */
+  transition: color 0.3s ease;
+}
+
+/* Linha amarela abaixo de cada item */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background-color: #ffe600;
+  transform: scaleX(0);       /* escondido por padrão */
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+/* Efeito no hover */
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);     /* revela a linha */
 }
 
 .btn-login {
   background: #ffe600;
   color: #007029;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
 }
@@ -84,6 +132,7 @@ nav {
   align-items: center;
   color: white;
   overflow: hidden;
+  margin-bottom: 4em;
 }
 
 /* Overlay esverdeado com transparência */
@@ -111,17 +160,24 @@ nav {
 .btn-cta {
   display: inline-block;
   background: #ffe600;
-  color: #000;
+  color: #007029;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   margin-top: 1rem;
   font-weight: bold;
   text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-cta:hover {
+  color: white;
+  background-color: #007029;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Serviços */
-.services h3 span {
-  color: #3e8e3e;
+.servicos h3 {
+  text-align: center;
 }
 
 .service-grid {
@@ -134,78 +190,132 @@ nav {
 .service-card {
   padding: 2rem;
   background: #faf1ee;
-  color: #58595b;
   border-radius: 8px;
   text-align: left;
+  transition: 0.3s ease;
 }
 
-.service-card.highlight {
-  background-color: #3e8e3e;
+.service-card:hover {
+  position: relative;
+  transform: translateY(-10px);
   color: white;
+  background-color: #3e8e3e;
+  transition: background-color 0.3s, color 0.3s, position 0.3s;
 }
 
 /* Info section */
 .info-content {
-  margin: 5em 0 5em 0;
+  margin-bottom: 5em;
   display: flex;
-  flex-direction: column;
   gap: 2rem;
-  align-items: center;
 }
 
 .info-content img {
-  width: 100%;
-  max-width: 400px;
+  width: 50%;
+}
+
+.text {
+  margin-right: 3rem;
 }
 
 .btn-secondary {
   background: #ffe600;
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 2rem;
   text-decoration: none;
-  color: black;
-  border-radius: 4px;
+  color: #007029;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 2rem;
+  transition: 0.3s ease;
+}
+
+.btn-secondary:hover {
+  color: white;
+  background-color: #007029;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Contact */
+/* Área geral da seção de contato */
 .contact {
-  background: #faf1ee;
-  padding: 2rem 1rem;
+  background-color: #fdf4f2;
+  padding: 2rem 0;
 }
 
-.contact h4 span {
-  color: #3e8e3e;
+/* Wrapper principal com duas colunas */
+.contact-wrapper {
+  display: flex;
+  /* gap: 3rem; */
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-form {
-  margin-top: 1rem;
+/* Coluna esquerda: texto */
+.contact-info {
+  flex: 1;
+  min-width: 300px;
+  padding-right: 5em;
 }
 
+.contact-info p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Coluna direita: formulário */
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Linha com dois campos lado a lado */
 .form-row {
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
-input, textarea {
+.form-row input {
+  flex: 1;
+}
+
+/* Inputs e textarea */
+.contact-form input,
+.contact-form textarea {
   width: 100%;
-  padding: 0.75rem;
-  margin-top: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-textarea {
-  min-height: 120px;
-}
-
-.btn-submit {
-  background-color: #3e8e3e;
-  color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
   margin-top: 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #333;
+  box-shadow: 0 0 0 1px #e0e0e0;
+}
+
+/* Botão */
+.btn-submit {
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  background-color: #3e8e3e;
+  color: white;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 1em;
+  transition: 0.3s;
+
+
+  
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-submit:hover {
+  background-color: #255125;
 }
 
 /* Footer */
@@ -217,7 +327,7 @@ footer {
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   flex-wrap: wrap;
 }
@@ -226,15 +336,27 @@ footer {
   width: 10rem;
 }
 
+.copyright {
+  color: #afb3a8;
+  margin-left: 3rem;
+}
+
 .social {
   align-content: end;
   align-items: center; /* alinha verticalmente os links do menu e o botão de login*/
   display: flex;
-  gap: 1rem;           /* espaço entre a lista e o botão */
+  gap: 1rem;           /* espaço entre os ícones */
+  margin-left: auto;
 }
 
 .social a img {
   width: 2.2rem;
+  filter: grayscale(100%);
+}
+
+.social a img:hover {
+  filter: brightness(200%);
+  transition: filter 0.3s ease;
 }
 
 /* Responsividade */
@@ -260,5 +382,13 @@ footer {
 
   .hero-content {
     max-width: 100%;
+  }
+
+  .contact-wrapper {
+    flex-direction: column;
+  }
+
+  .form-row {
+    flex-direction: column;
   }
 }
