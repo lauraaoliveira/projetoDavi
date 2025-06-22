@@ -21,6 +21,21 @@
       $stmt = $pdo->prepare($sql);
       $stmt->execute();
       $coletasPendentes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      
+      $id_empresa = $_SESSION['id'];
+
+      $sql = "SELECT c.*, u.nome, u.email, u.logradouro_usuario
+              FROM coletas c
+              JOIN usuarios u ON c.id_usuario = u.id_usuario
+              WHERE c.status = 'aceita' AND c.id_empresa = :id_empresa";
+
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':id_empresa', $id_empresa);
+      $stmt->execute();
+      $coletasAceitas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -53,7 +68,7 @@
             <strong>Quantidade:</strong> <?php echo $coleta['quantidade']; ?> garrafas<br>
             <form action="aceitar_coleta.php" method="post">
               <input type="hidden" name="id_coleta" value="<?php echo $coleta['id_coleta']; ?>">
-              <input type="submit" value="Aceitar Coleta">
+              <input type="submit" value="Aceitar solicitação">
             </form>
             <hr>
           </li>
@@ -61,6 +76,37 @@
       </ul>
     <?php else: ?>
         <p>Nenhuma coleta pendente no momento.</p>
+    <?php endif; ?>
+  </dialog>
+
+  <button class="btn-open-modal" data-modal="modal-7">Coletas aceitas</button>
+
+  <dialog id="modal-7">
+    <?php if (count($coletasAceitas) > 0): ?>
+      <ul>
+        <?php foreach ($coletasAceitas as $coleta): ?>
+          <li>
+            <strong>Nome:</strong> <?php echo $coleta['nome']; ?><br>
+            <strong>Email:</strong> <?php echo $coleta['email']; ?><br>
+            <strong>Endereço:</strong> <?php echo $coleta['logradouro_usuario']; ?><br>
+            <strong>Quantidade:</strong> <?php echo $coleta['quantidade']; ?> garrafas<br>
+
+            <?php if (!$coleta['confirmacao_empresa']): ?>
+              <form action="confirmar_coleta_empresa.php" method="post">
+                <input type="hidden" name="id_coleta" value="<?php echo $coleta['id_coleta']; ?>">
+                <button type="submit">Confirmar coleta</button>
+              </form>
+              
+            <?php else: ?>
+              <p>Aguardando confirmação do usuário</p>
+            <?php endif; ?>
+
+            <hr>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php else: ?>
+      <p>Nenhuma coleta aceita por você ainda.</p>
     <?php endif; ?>
   </dialog>
 

@@ -27,11 +27,14 @@
 
       $nome_empresa_aceitou = "";
 
-      $sql = "SELECT e.nome_fantasia
-              FROM coletas c
-              JOIN empresa e ON c.id_empresa = e.id_empresa
-              WHERE c.id_usuario = :id_usuario AND c.status IN ('aceita', 'finalizada')
-              LIMIT 1";
+      $sql = "SELECT c.id_coleta, c.status, c.confirmacao_usuario, c.confirmacao_empresa, e.nome_fantasia
+        FROM coletas c
+        LEFT JOIN empresa e ON c.id_empresa = e.id_empresa
+        WHERE c.id_usuario = :id_usuario AND c.status IN ('pendente', 'aceita', 'finalizada')
+        ORDER BY c.id_coleta DESC
+        LIMIT 1";
+
+
 
       $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':id_usuario', $id_usuario);
@@ -39,9 +42,19 @@
 
       $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
+      $id_coleta = null;
+      $status_coleta = null;
+      $confirmado_usuario = false;
+      $confirmado_empresa = false;
+      $nome_empresa_aceitou = "";
       if ($resultado) {
+          $id_coleta = $resultado['id_coleta'];
+          $status_coleta = $resultado['status'];
+          $confirmado_usuario = $resultado['confirmacao_usuario'];
+          $confirmado_empresa = $resultado['confirmacao_empresa'];
           $nome_empresa_aceitou = $resultado['nome_fantasia'];
       }
+
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -63,12 +76,45 @@
   <h3>Você tem: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo": " garrafas de óleo"?></h3>
   
   <h4>
-    <?php if ($nome_empresa_aceitou): ?>
+    <?php if ($nome_empresa_aceitou && $solicitado): ?>
       <p>A empresa <strong><?php echo $nome_empresa_aceitou; ?></strong> aceitou sua solicitação de coleta. Aguarde!</p>
     <?php elseif ($solicitado): ?>
       <p>Você possui uma solicitação pendente, aguarde uma empresa aceitar!</p>
     <?php endif; ?>
   </h4>
+
+
+    <!-- =========== CONTROLE DO BOTÃO DE CONFIRMAÇÃO DE COLETA ================= -->
+    <?php
+    $botaoDisabled = true;
+    $botaoTexto = "Confirmar coleta";
+
+    if ($id_coleta) {
+        if ($status_coleta == 'aceita' && !$confirmado_usuario) {
+            $botaoDisabled = false;
+        } elseif ($status_coleta == 'pendente') {
+            $botaoTexto = "Aguardando empresa aceitar...";
+        }elseif ($status_coleta=='aceita' && $confirmado_usuario) {
+          $botaoTexto = "Aguardando confirmação da empresa";
+          $botaoDisabled = true;
+        } elseif ($status_coleta == 'finalizada') {
+            $botaoTexto = "Coleta já finalizada";
+            $botaoDisabled = true;
+        }
+    } else {
+        $botaoTexto = "Nenhuma coleta solicitada";
+    }
+
+    ?>
+
+    <form action="confirmar_coleta_usuario.php" method="post">
+        <?php if ($id_coleta): ?>
+            <input type="hidden" name="id_coleta" value="<?php echo $id_coleta; ?>">
+        <?php endif; ?>
+        <button type="submit" <?php if ($botaoDisabled) echo "disabled"; ?>>
+            <?php echo $botaoTexto; ?>
+        </button>
+    </form>
 
 
   <!-- =========== MODAL PARA ADICIONAR OLEO ================= -->
