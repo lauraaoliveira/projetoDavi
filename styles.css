@@ -168,8 +168,9 @@ nav {
 
 .residencia-content {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: center; /* alinha verticalmente os itens */
+  justify-content: flex-end;
+  gap: 1rem; /* espaço entre os itens */
 }
 
 .coleta-aceita {
