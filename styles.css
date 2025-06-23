@@ -148,8 +148,6 @@ nav {
 
 .nav-link {
   position: relative;
-.nav-link {
-  position: relative;
   color: white;
   text-decoration: none;
   padding-bottom: 5px;
@@ -413,6 +411,7 @@ padding-top: 3.5rem;
 
 .servicos h3 {
   text-align: center;
+}
 
 .servicos {
 padding-top: 3.5rem;
@@ -442,6 +441,8 @@ padding-top: 3.5rem;
   position: relative;
   transform: translateY(-10px);
   color: white;
+}
+
 .service-card:hover {
   position: relative;
   transform: translateY(-10px);
@@ -542,6 +543,7 @@ padding-top: 3.5rem;
   color: #555;
   line-height: 1.6;
   font-size: 1rem;
+}
 /* Coluna esquerda: texto */
 .contact-info {
   flex: 1;
@@ -549,23 +551,13 @@ padding-top: 3.5rem;
   padding-right: 5em;
 }
 
-.contact-info p {
-  color: #555;
-  line-height: 1.6;
-  font-size: 1rem;
-}
 
-/* Coluna direita: formulário */
-.contact-form {
-  flex: 1;
-  min-width: 300px;
 /* Coluna direita: formulário */
 .contact-form {
   flex: 1;
   min-width: 300px;
 }
 
-/* Linha com dois campos lado a lado */
 /* Linha com dois campos lado a lado */
 .form-row {
   display: flex;
@@ -582,9 +574,6 @@ padding-top: 3.5rem;
   flex: 1;
 }
 
-/* Inputs e textarea */
-.contact-form input,
-.contact-form textarea {
 /* Inputs e textarea */
 .contact-form input,
 .contact-form textarea {
