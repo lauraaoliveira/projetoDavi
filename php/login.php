@@ -36,13 +36,13 @@ try {
                 $_SESSION['tipo'] = 'usuario';
                 $_SESSION['id'] = $dados['id_usuario'];
                 $_SESSION['nome'] = $dados['nome'];
-                header("Location: usuario/painel_usuario.php");
+                header("Location: ../index.php");
                 exit;
             } elseif ($tipo == 'empresa') {
                 $_SESSION['tipo'] = 'empresa';
                 $_SESSION['id'] = $dados['id_empresa'];
                 $_SESSION['nome'] = $dados['nome_fantasia'];
-                header("Location: empresa/painel_empresa.php");
+                header("Location: ../index.php");
                 exit;
             }
         } else {

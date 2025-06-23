@@ -159,14 +159,5 @@
     
   </dialog>
   
-
-  <!-- excluir conta -->
-  <form action="../excluir_conta.php" method="post">
-    <p><input type="submit" value="Excluir conta"></p>
-  </form>
-  <p><a href="../logout.php">Sair</a></p>
-
-  <script src="../../js/modal.js"></script>
-  <script src="../../js/contadorOleo.js"></script>
 </body>
 </html>

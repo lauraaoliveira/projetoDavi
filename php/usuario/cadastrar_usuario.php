@@ -29,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(":solicitado", $solicitado);
 
         $stmt->execute();
-        echo "Usuário cadastrado com sucesso!";
+        header("Location: ../../index.php");
+
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }

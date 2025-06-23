@@ -27,7 +27,7 @@
       $stmt->bindParam(":senha",$senha, PDO::PARAM_STR);
 
       $stmt->execute();
-      echo "empresa cadastrada";
+      header("Location: ../../index.php");
 
     }catch(PDOException $e){
       echo "Error:" .$e->getMessage();

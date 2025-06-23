@@ -23,7 +23,7 @@ try {
     $stmt->bindParam(':qtd', $quantidadeParaAdicionar);
     $stmt->execute();
 
-    header("Location: painel_usuario.php");
+    header("Location: ../../index.php");
     exit;
 
 } catch (PDOException $e) {

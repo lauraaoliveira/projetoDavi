@@ -36,7 +36,7 @@ try {
             
         }
 
-        header("Location: painel_empresa.php");
+        header("Location: ../../index.php");
         exit;
     }
 

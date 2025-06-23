@@ -24,7 +24,7 @@ try {
         $stmt->bindParam(':id_coleta', $id_coleta);
         $stmt->execute();
 
-        header("Location: painel_empresa.php");
+        header("Location: ../../index.php");
         exit;
     }
 
