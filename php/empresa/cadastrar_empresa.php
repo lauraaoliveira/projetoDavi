@@ -14,22 +14,20 @@
 
       $nomeFantasia = $_POST['nome_fantasia'];
       $logradouroEmpresa = $_POST['logradouro_empresa'];
-      $telefone = $_POST['telefone_empresa'];
       $email = $_POST['email_empresa'];
       $senha = $_POST['senha'];
 
-      $queryInsert = "INSERT INTO empresa (nome_fantasia,logradouro_empresa,telefone_empresa,email_empresa,senha) VALUES (:nome_fantasia,:logradouro_empresa,:telefone_empresa,:email_empresa,:senha)";
+      $queryInsert = "INSERT INTO empresa (nome_fantasia,logradouro_empresa,email_empresa,senha) VALUES (:nome_fantasia,:logradouro_empresa,:email_empresa,:senha)";
 
       $stmt = $pdo->prepare($queryInsert);
 
       $stmt->bindParam(":nome_fantasia",$nomeFantasia, PDO::PARAM_STR);
       $stmt->bindParam(":logradouro_empresa",$logradouroEmpresa, PDO::PARAM_STR);
-      $stmt->bindParam(":telefone_empresa",$telefone, PDO::PARAM_STR);
       $stmt->bindParam(":email_empresa",$email, PDO::PARAM_STR);
       $stmt->bindParam(":senha",$senha, PDO::PARAM_STR);
 
       $stmt->execute();
-      echo "empresa cadastrada";
+      header("Location: ../../index.php");
 
     }catch(PDOException $e){
       echo "Error:" .$e->getMessage();

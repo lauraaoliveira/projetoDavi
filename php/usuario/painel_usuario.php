@@ -15,7 +15,7 @@
 
       $id_usuario = $_SESSION['id'];
 
-      $sql = "SELECT qtd_oleo, solicitado, qtd_para_coletar, empresa_aceitou FROM usuarios WHERE id_usuario = :id";
+      $sql = "SELECT qtd_oleo, solicitado FROM usuarios WHERE id_usuario = :id";
 
       $stmt = $pdo->prepare($sql);
       $stmt->bindParam(':id', $id_usuario);
@@ -24,8 +24,37 @@
 
       $qtd_oleo = $dados['qtd_oleo'];
       $solicitado = $dados['solicitado'];
-      $qtd_para_coletar = $dados['qtd_para_coletar'];
-      $nome_empresa_aceitou = $dados['empresa_aceitou'];
+
+      $nome_empresa_aceitou = "";
+
+      $sql = "SELECT c.id_coleta, c.status, c.confirmacao_usuario, c.confirmacao_empresa, e.nome_fantasia
+        FROM coletas c
+        LEFT JOIN empresa e ON c.id_empresa = e.id_empresa
+        WHERE c.id_usuario = :id_usuario AND c.status IN ('pendente', 'aceita', 'finalizada')
+        ORDER BY c.id_coleta DESC
+        LIMIT 1";
+
+
+
+      $stmt = $pdo->prepare($sql);
+      $stmt->bindParam(':id_usuario', $id_usuario);
+      $stmt->execute();
+
+      $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      $id_coleta = null;
+      $status_coleta = null;
+      $confirmado_usuario = false;
+      $confirmado_empresa = false;
+      $nome_empresa_aceitou = "";
+      if ($resultado) {
+          $id_coleta = $resultado['id_coleta'];
+          $status_coleta = $resultado['status'];
+          $confirmado_usuario = $resultado['confirmacao_usuario'];
+          $confirmado_empresa = $resultado['confirmacao_empresa'];
+          $nome_empresa_aceitou = $resultado['nome_fantasia'];
+      }
+
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -43,20 +72,69 @@
 
   <p>Aqui é a "tela do usuario", apenas pra provar q fez login e testar as funcionalidades</p>
   <p>já que será tudo na tela inical</p>
+
+  <h3>Você tem: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo": " garrafas de óleo"?></h3>
   
-  <p>Quantidade total de óleo: <?php echo $qtd_oleo; ?> <?php echo $qtd_oleo == 1? "garrafa" : "garrafas"?></p>
-
-
-  <h3><?php if($solicitado) echo "Você possui uma solicitação pendente"?></h3>
   <h4>
-    <?php if ($nome_empresa_aceitou): ?>
+    <?php if ($nome_empresa_aceitou && $solicitado): ?>
       <p>A empresa <strong><?php echo $nome_empresa_aceitou; ?></strong> aceitou sua solicitação de coleta. Aguarde!</p>
+    <?php elseif ($solicitado): ?>
+      <p>Você possui uma solicitação pendente, aguarde uma empresa aceitar!</p>
     <?php endif; ?>
   </h4>
-  <!-- adicionar óleo -->
-  <form action="adicionar_oleo.php" method="post">
-    <p><input type="submit" value="+1 oleo" <?php if($solicitado) echo 'disabled'; ?> ></p>
-  </form>
+
+
+    <!-- =========== CONTROLE DO BOTÃO DE CONFIRMAÇÃO DE COLETA ================= -->
+    <?php
+    $botaoDisabled = true;
+    $botaoTexto = "Confirmar coleta";
+
+    if ($id_coleta) {
+        if ($status_coleta == 'aceita' && !$confirmado_usuario) {
+            $botaoDisabled = false;
+        } elseif ($status_coleta == 'pendente') {
+            $botaoTexto = "Aguardando empresa aceitar...";
+        }elseif ($status_coleta=='aceita' && $confirmado_usuario) {
+          $botaoTexto = "Aguardando confirmação da empresa";
+          $botaoDisabled = true;
+        } elseif ($status_coleta == 'finalizada') {
+            $botaoTexto = "Coleta já finalizada";
+            $botaoDisabled = true;
+        }
+    } else {
+        $botaoTexto = "Nenhuma coleta solicitada";
+    }
+
+    ?>
+
+    <form action="confirmar_coleta_usuario.php" method="post">
+        <?php if ($id_coleta): ?>
+            <input type="hidden" name="id_coleta" value="<?php echo $id_coleta; ?>">
+        <?php endif; ?>
+        <button type="submit" <?php if ($botaoDisabled) echo "disabled"; ?>>
+            <?php echo $botaoTexto; ?>
+        </button>
+    </form>
+
+
+  <!-- =========== MODAL PARA ADICIONAR OLEO ================= -->
+  <button class="btn-open-modal" data-modal="modal-5">Cadastrar óleo</button>
+  <dialog id="modal-5">
+    <p>Você tem: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo": " garrafas de óleo"?></p>
+    
+    <form action="adicionar_oleo.php" method="post">
+
+      <button type="button" onclick="alterarQuantidade(-1)">- 1</button>
+      <p>Adicionar <span id="contador">1</span> garrafas</p>
+      <button type="button" onclick="alterarQuantidade(1)">+ 1</button>
+
+      <input type="hidden" name="quantidade" id="quantidade" value="1">
+
+      <p><input type="submit" value="Confirmar"></p>
+      <button class="btn-close-modal" data-modal="modal-5">Cancelar</button>
+    </form>
+  </dialog>
+  
 
   
   <!-- =========== MODAL PARA SOLICITAR A COLETA ================= -->
@@ -70,8 +148,7 @@
   
   <h2>Modal para solicitar a coleta</h1>
   <button class="btn-close-modal" data-modal="modal-4">X</button>
-  
-  <!-- =========== FORMULÁRIO PARA INFORMAR QUANTO SERÁ COLETADO ================= -->
+
   <form action="solicitar_coleta.php" method="post">
     <h2> Você irá solicitar a coleta para <?php echo $qtd_oleo?> <?php echo $qtd_oleo == 1? "garrafa" : "garrafas"?></h2>
     <p>
@@ -82,13 +159,5 @@
     
   </dialog>
   
-
-  <!-- excluir conta -->
-  <form action="../excluir_conta.php" method="post">
-    <p><input type="submit" value="Excluir conta"></p>
-  </form>
-  <p><a href="../logout.php">Sair</a></p>
-
-  <script src="../../js/modal.js"></script>
 </body>
 </html>

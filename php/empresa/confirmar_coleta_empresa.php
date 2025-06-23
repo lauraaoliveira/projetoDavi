@@ -16,13 +16,25 @@ try {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_coleta'])) {
         $id_coleta = $_POST['id_coleta'];
-        $id_empresa = $_SESSION['id'];
 
-        $sql = "UPDATE coletas SET status = 'aceita', id_empresa = :id_empresa WHERE id_coleta = :id_coleta";
+        $sql = "UPDATE coletas SET confirmacao_empresa = 1 WHERE id_coleta = :id";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id_empresa', $id_empresa);
-        $stmt->bindParam(':id_coleta', $id_coleta);
+        $stmt->bindParam(':id', $id_coleta);
         $stmt->execute();
+
+        $sql = "SELECT confirmacao_usuario FROM coletas WHERE id_coleta = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id_coleta);
+        $stmt->execute();
+        $confirmacao_usuario = $stmt->fetchColumn();
+
+        if ($confirmacao_usuario) {
+            $sql = "UPDATE coletas SET status = 'finalizada' WHERE id_coleta = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':id', $id_coleta);
+            $stmt->execute();
+            
+        }
 
         header("Location: ../../index.php");
         exit;
