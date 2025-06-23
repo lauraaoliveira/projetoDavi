@@ -1,5 +1,9 @@
 <?php
-// AQUI NÃO precisa de session_start, porque o index já fez
+
+if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] != 'usuario') {
+    header("Location: index.php");
+    exit;
+}
 
 $id_usuario = $_SESSION['id'];
 
@@ -44,8 +48,8 @@ try {
 }
 ?>
 
-<div class="residencia">
-  <div class="residencia-content container">
+  <div class="residencia">
+    <div class="residencia-content container">
 
     <?php if($status_coleta == 'aceita'): ?>
       <div>
