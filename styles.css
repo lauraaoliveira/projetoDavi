@@ -200,7 +200,7 @@ nav {
 /* A partir daqui consta o controle da barra do usuário RESIDÊNCIA*/
 
 /*  ––––––––––––– Oculta a barra de usuário quando não estiver logado –––––––––––––  */
-.residencia {
+/* .residencia {
   display: none;
 }
 .logado {
@@ -208,7 +208,7 @@ nav {
 }
 .hero {
   margin-top: 5rem;
-}
+} */
 
 
 
@@ -216,7 +216,7 @@ nav {
 
 /* 1. ––––––––––––– Quando não houver coleta solicitada ––––––––––––– */
 
-/* .btn-login {
+.btn-login {
   display: none;
 } 
 .coleta-aceita {
@@ -227,7 +227,7 @@ nav {
 }
 .hero {
   margin-top: 10rem;
-} */
+}
 
 /*  2. ––––––––––––– Quando a coleta foi solicitada e não estiver aceita –––––––––––––  */
 
