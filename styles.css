@@ -15,11 +15,6 @@ body, html {
   /* scroll-behavior: smooth; */
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
 .residencia-content img {
   height: 2rem;
 }
@@ -29,41 +24,16 @@ img {
   margin: 5em auto; /* Espaçamento entre as seções */
   width: 25%;
 }
+
+h1 img {
+  width: 13rem; /* largura da logo do cabeçalho */
+  height: auto; /* mantém a proporção da altura em relação à configuração anterior*/
+}
+
 h2 {
   font-size: 3em;
   line-height: normal;
 }
-
-
-h3 {
-  color: #3e8e3e;
-  font-weight: 400;
-  font-size: 1.5em;
-}
-
-h3 span {
-  display: block;
-  color: #737577;
-  font-weight: bold;
-  font-size: 1.4em;
-  line-height: 1.2em;
-  margin-bottom: 20px;
-}
-
-.residencia-content img {
-  height: 2rem;
-}
-
-.divisor {
-  border-bottom: 4px solid #bdcf00;
-  margin: 5em auto; /* Espaçamento entre as seções */
-  width: 25%;
-}
-h2 {
-  font-size: 3em;
-  line-height: normal;
-}
-
 
 h3 {
   color: #3e8e3e;
@@ -129,11 +99,6 @@ header {
   align-items: center;
 }
 
-h1 img {
-  width: 13rem; /* largura da logo do cabeçalho */
-  height: auto; /* mantém a proporção da altura em relação à configuração anterior*/
-}
-
 nav {
   display: flex;
   align-items: center; /* alinha verticalmente os links do menu e o botão de login*/
@@ -151,7 +116,7 @@ nav {
   color: white;
   text-decoration: none;
   padding-bottom: 5px;
-  /* font-size: 1.2rem; */
+  font-size: 1.2rem;
   transition: color 0.3s ease;
 }
 
@@ -161,7 +126,7 @@ nav {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 3px;
+  height: 4px;
   width: 100%;
   background-color: #ffe600;
   transform: scaleX(0);       /* escondido por padrão */
@@ -172,33 +137,48 @@ nav {
 /* Efeito no hover */
 .nav-link:hover::after,
 .nav-link.active::after {
-  transform: scaleX(1);     /* revela a linha */
-  padding-bottom: 5px;
-  /* font-size: 1.2rem; */
-  transition: color 0.3s ease;
+  transform: scaleX(1);       /* revela a linha */
 }
 
-/* Linha amarela abaixo de cada item */
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 100%;
-  background-color: #ffe600;
-  transform: scaleX(0);       /* escondido por padrão */
-  transform-origin: left;
-  transition: transform 0.3s ease;
+.btn-open-modal {
+  /* Resetando estilos padrão (por causa do PHP) */
+  -webkit-appearance: none; /* Para navegadores Webkit (Chrome, Safari) */
+  -moz-appearance: none;    /* Para navegadores Mozilla (Firefox) */
+  appearance: none;         /* Propriedade padrão */
+  border: none;             /* Remove a borda padrão */
+  background-color: transparent; /* Remove a cor de fundo padrão */
+  padding: 0;               /* Remove o padding padrão */
+  margin: 0;                /* Remove a margem padrão */
+  font-family: inherit;     /* Herda a fonte do elemento pai */
+  font-size: inherit;       /* Herda o tamanho da fonte do elemento pai */
+  cursor: pointer;          /* Altera o cursor para indicar que é clicável */
+
+  /* Estilos personalizados */
+  background-color: #ffe600; /* Cor de fundo azul */
+  color: white;              /* Cor do texto branco */
+  padding: 10px 20px;        /* Preenchimento interno */
+  border-radius: 5px;        /* Cantos arredondados */
+  text-align: center;        /* Alinha o texto ao centro */
+  text-decoration: none;     /* Remove sublinhado (se fosse um link, por exemplo) */
+  display: inline-block;     /* Permite aplicar largura e altura, se necessário */
+  transition: background-color 0.3s ease; /* Transição suave para o hover */
 }
 
-/* Efeito no hover */
-.nav-link:hover::after,
-.nav-link.active::after {
-  transform: scaleX(1);     /* revela a linha */
+.btn-open-modal:hover {
+    background-color: #0056b3; /* Cor de fundo mais escura ao passar o mouse */
 }
 
-.btn-login {
+.btn-open-modal:active {
+    background-color: #004085; /* Cor de fundo ainda mais escura ao clicar */
+    transform: translateY(1px); /* Pequeno efeito de "pressionar" */
+}
+
+.btn-open-modal:focus {
+    outline: none; /* Remove o contorno de foco padrão */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Adiciona um foco visual customizado */
+}
+
+.login {
   background: #ffe600;
   color: #007029;
   padding: 0.5rem 1rem;

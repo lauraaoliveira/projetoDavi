@@ -151,7 +151,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
   <div class="container contact-wrapper">
     
     <!-- Coluna esquerda: texto -->
-    <div class="contact-info">
+    <div class="contact-info container">
       <h3>Tem alguma dúvida?<span>ENTRE EM CONTATO CONOSCO</span></h3>
       <p>
         Ficaremos felizes em poder ajudar você a tirar as suas dúvidas quanto ao nosso processo de trabalho, como trabalhamos para ajudar o meio ambiente, ou mesmo sobre qual quer outro assunto sobre o qual você queira falar.
@@ -159,7 +159,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
     </div>
 
     <!-- Coluna direita: formulário -->
-    <form class="contact-form">
+    <form class="contact-form container">
       <div class="form-row">
         <input type="text" placeholder="Nome *" required>
         <input type="text" placeholder="Sobrenome *" required>
