@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 // Conexão
 $host = "localhost";
 $db = "projetooleo";
@@ -25,8 +26,8 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Novolhar - Processamento de Óleo</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="modal.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/modal.css">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -51,7 +52,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
           <?php else:?>
             <div class="logado">
               <p class="usuario">Olá, <?php echo $nome?></p>
-              <form action="../excluir_conta.php" method="post">
+              <form action="php/excluir_conta.php" method="post">
                 <p class="link"><input type="submit" value="Excluir conta"></p>
               </form>
               <p class="link"><a href="php/logout.php">Sair</a></p>
@@ -194,7 +195,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
     </p>
     <div class="modal-actions">
       <p><input type="submit" value="Entrar"></p>
-      <button class="btn-close-modal" data-modal="modal-1">Cancelar</button>
+      <button type="button" class="btn-close-modal" data-modal="modal-1">Cancelar</button>
     </div>
     </form>
     
@@ -211,7 +212,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
         <p><input type="password" name="senha" placeholder="Senha*" required></p>
       </div>
       <div class="modal-actions">
-        <button class="btn-close-modal" data-modal="modal-2">Cancelar</button>
+        <button type="button" class="btn-close-modal" data-modal="modal-2">Cancelar</button>
         <p><input type="submit" value="Registar empresa"></p>
       </div>
     </form>
@@ -228,7 +229,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
         <p><input type="password" name="senha" placeholder="Senha*" required></p>
       </div>
       <div class="modal-actions">
-        <button class="btn-close-modal" data-modal="modal-3">Cancelar</button>
+        <button type="button" class="btn-close-modal" data-modal="modal-3">Cancelar</button>
         <p><input type="submit" value="Cadastrar"></p>
       </div>
     </form>

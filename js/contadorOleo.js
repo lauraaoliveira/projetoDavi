@@ -1,10 +1,10 @@
-let quantiade = 1;
+let quantiade = 0;
 
 function alterarQuantidade(valor){
   quantiade+= valor;
 
-  if(quantiade< 1){
-    quantiade = 1;
+  if(quantiade< 0){
+    quantiade = 0;
   }
   document.getElementById("contador").innerText = quantiade;
   document.getElementById("quantidade").value = quantiade;

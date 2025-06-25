@@ -273,7 +273,7 @@ nav {
 /* Hero - Seção principal, com chamada para ação*/
 .hero {
   position: relative;
-  background: url('img/Home.jpg') center center / cover no-repeat;
+  background: url('../img/Home.jpg') center center / cover no-repeat;
   height: 80vh;
   display: flex;
   align-items: center;

@@ -56,7 +56,7 @@ try {
             <strong>Quantidade:</strong> <?php echo $coleta['quantidade']; ?> garrafas<br>
 
             <?php if (!$coleta['confirmacao_empresa']): ?>
-              <form action="confirmar_coleta_empresa.php" method="post">
+              <form action="php/empresa/confirmar_coleta_empresa.php" method="post">
                 <input type="hidden" name="id_coleta" value="<?php echo $coleta['id_coleta']; ?>">
                 <button type="submit">Confirmar coleta</button>
               </form>
@@ -84,7 +84,7 @@ try {
             <strong>Email:</strong> <?php echo $coleta['email']; ?><br>
             <strong>Endereço:</strong> <?php echo $coleta['logradouro_usuario']; ?><br>
             <strong>Quantidade:</strong> <?php echo $coleta['quantidade']; ?> garrafas<br>
-            <form action="aceitar_coleta.php" method="post">
+            <form action="php/empresa/aceitar_coleta.php" method="post">
               <input type="hidden" name="id_coleta" value="<?php echo $coleta['id_coleta']; ?>">
               <input type="submit" value="Aceitar solicitação">
             </form>

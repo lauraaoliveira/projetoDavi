@@ -48,14 +48,37 @@ try {
 }
 ?>
 
+<?php
+    $botaoDisabled = true;
+    $botaoTexto = "Confirmar coleta";
+
+    if ($id_coleta) {
+        if ($status_coleta == 'aceita' && !$confirmado_usuario) {
+            $botaoDisabled = false;
+        }elseif ($status_coleta=='aceita' && $confirmado_usuario) {
+          $botaoTexto = "Aguardando confirmação da empresa";
+          $botaoDisabled = true;
+        } 
+    }
+    ?>
+
 <div class="residencia">
   <div class="residencia-content container">
 
     <?php if($status_coleta == 'aceita'): ?>
       <div>
         <img src="img/coleta.svg" alt="Coleta">
-        <h5><?php echo $empresa_responsavel; ?> está a caminho para coleta de óleo em sua residência.</h5>
-        <a href="#" class="botao confirma">Confirmar coleta</a>
+        <h5><strong><?php echo $nome_empresa_aceitou; ?></strong> está a caminho para coleta de óleo em sua residência.</h5>
+
+        <form action="php/usuario/confirmar_coleta_usuario.php" method="post">
+            <?php if ($id_coleta): ?>
+              <input type="hidden" name="id_coleta" value="<?php echo $id_coleta; ?>">
+            <?php endif; ?>
+            <button type="submit" class="botao confirma" <?php if ($botaoDisabled) echo "disabled"; ?>>
+              <?php echo $botaoTexto; ?>
+            </button>
+        </form>
+
       </div>
     <?php elseif($status_coleta == 'pendente'): ?>
       <h5>Você possui uma solicitação pendente, aguarde uma empresa aceitar</h5>
@@ -65,42 +88,14 @@ try {
 
     <h5 class="qtd-oleo">Você possui <?php echo $qtd_oleo; ?> litros de óleo cadastrados.</h5>
     <button class="btn-open-modal botao" data-modal="modal-5">Cadastrar óleo</button>
-    <button class="btn-open-modal botao" data-modal="modal-4" 
-      <?php if($solicitado || $qtd_oleo == 0  ) echo 'disabled'; ?>
-      >
-      <?php echo !$solicitado ? 'Solicitar coleta' : 'Coleta solicitada'; ?>
-    </button>
+     
+      <?php if(!$solicitado && $qtd_oleo > 0):?>
+        <button class="btn-open-modal botao" data-modal="modal-4">Solicitar coleta</button>
+      <?php endif; ?>
     <!-- =========== CONTROLE DO BOTÃO DE CONFIRMAÇÃO DE COLETA ================= -->
-    <?php
-    $botaoDisabled = true;
-    $botaoTexto = "Confirmar coleta";
+    
 
-    if ($id_coleta) {
-        if ($status_coleta == 'aceita' && !$confirmado_usuario) {
-            $botaoDisabled = false;
-        } elseif ($status_coleta == 'pendente') {
-            $botaoTexto = "Aguardando empresa aceitar...";
-        }elseif ($status_coleta=='aceita' && $confirmado_usuario) {
-          $botaoTexto = "Aguardando confirmação da empresa";
-          $botaoDisabled = true;
-        } elseif ($status_coleta == 'finalizada') {
-            $botaoTexto = "Coleta já finalizada";
-            $botaoDisabled = true;
-        }
-    } else {
-        $botaoTexto = "Nenhuma coleta solicitada";
-    }
-
-    ?>
-
-    <form action="php/usuario/confirmar_coleta_usuario.php" method="post">
-        <?php if ($id_coleta): ?>
-            <input type="hidden" name="id_coleta" value="<?php echo $id_coleta; ?>">
-        <?php endif; ?>
-        <button type="submit" <?php if ($botaoDisabled) echo "disabled"; ?>>
-            <?php echo $botaoTexto; ?>
-        </button>
-    </form>
+    
   </div>
 </div>
 
@@ -122,7 +117,7 @@ try {
 
       <input type="hidden" name="quantidade" id="quantidade" value="1">
       <div class="modal-actions">
-        <button data-modal="modal-5" class="btn-close-modal">Cancelar</button>
+        <button type="button" data-modal="modal-5" class="btn-close-modal">Cancelar</button>
         <p><input type="submit" value="Confirmar"></p>
       </div>
 
@@ -138,7 +133,7 @@ try {
   <form action="php/usuario/solicitar_coleta.php" method="post">
     <h4 class="solicita-coleta"> Você confirma a solicitação para coleta de <?php echo $qtd_oleo?> <?php echo $qtd_oleo == 1? "litro de óleo?" : "litros de óleo?"?></h4>
     <div class="modal-actions">
-      <button class="btn-close-modal" data-modal="modal-4">Cancelar</button>
+      <button type="button" class="btn-close-modal" data-modal="modal-4">Cancelar</button>
       <p><input type="submit" value="confirmar"></p>
     </div>
   </form>
