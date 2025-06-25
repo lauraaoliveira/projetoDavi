@@ -70,7 +70,7 @@ try {
     <?php if($status_coleta == 'aceita'): ?>
       <div>
         <img src="img/coleta.svg" alt="Coleta">
-        <h5><strong><?php echo $nome_empresa_aceitou; ?></strong> está a caminho para coleta de óleo em sua residência.</h5>
+        <h5><strong><?php echo $nome_empresa_aceitou; ?></strong> <?php echo $confirmado_empresa?  "está aguardando sua confirmação" : "está a caminho para coleta de óleo em sua residência." ?></h5>
 
         <form action="php/usuario/confirmar_coleta_usuario.php" method="post">
             <?php if ($id_coleta): ?>
@@ -83,12 +83,12 @@ try {
 
       </div>
     <?php elseif($status_coleta == 'pendente'): ?>
-      <h5>Você possui uma solicitação pendente, aguarde uma empresa aceitar</h5>
+      <h5>Você possui uma solicitação de coleta <strong>pendente</strong>, aguarde uma empresa aceitar.</h5>
     <?php else: ?>
-      <h5>Você não possui coletas solicitadas.</h5>
+      <h5>Você não possui um solicitação de coleta.</h5>
     <?php endif; ?>
 
-    <h5 class="qtd-oleo">Você possui <?php echo $qtd_oleo; ?> litros de óleo cadastrados.</h5>
+    <h5 class="qtd-oleo">Você possui <?php echo $qtd_oleo; ?> <?php echo $qtd_oleo ==1? "litro de óleo disponível para coleta." : "litros de óleo disponíveis para coleta."?> </h5>
     <button class="btn-open-modal botao" data-modal="modal-5">Cadastrar óleo</button>
      
       <?php if(!$solicitado && $qtd_oleo > 0):?>
@@ -112,7 +112,7 @@ try {
 
       <input type="hidden" name="quantidade" id="quantidade" value="1">
       <div class="modal-actions">
-        <button type="button" data-modal="modal-5" class="btn-close-modal">Cancelar</button>
+        <button type="button" data-modal="modal-5" class="btn-close-modal" onclick="resetarQuantidade()">Cancelar</button>
         <p><input type="submit" value="Confirmar"></p>
       </div>
 
@@ -134,5 +134,4 @@ try {
   </form>
     
   </dialog>
-<script src="js/modal.js"></script>
 <script src="js/contadorOleo.js"></script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/06/2025 às 22:37
+-- Tempo de geração: 25/06/2025 às 21:39
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -42,8 +42,8 @@ CREATE TABLE `coletas` (
 --
 
 INSERT INTO `coletas` (`id_coleta`, `id_usuario`, `id_empresa`, `quantidade`, `status`, `confirmacao_usuario`, `confirmacao_empresa`) VALUES
-(3, 2, 1, 4, 'finalizada', 1, 1),
-(4, 2, NULL, 7, 'pendente', 0, 0);
+(1, 1, 1, 7, 'aceita', 0, 1),
+(2, 3, 1, 20, 'aceita', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`id_empresa`, `nome_fantasia`, `logradouro_empresa`, `telefone_empresa`, `email_empresa`, `senha`) VALUES
-(1, 'Nome fantasia', 'logradouro', NULL, 'testeempresa@gmail.com', '1234');
+(1, 'Eco óleo', 'Rua Imaculada', NULL, 'ecooleo@org.com', '1234');
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nome`, `logradouro_usuario`, `email`, `senha`, `qtd_oleo`, `solicitado`) VALUES
-(2, 'Gui', 'logradouro', 'testeusuario@gmail.com', '1234', 0, 1);
+(1, 'Guilherme', 'Rua Almir', 'gui@gmail.com', '1234', 0, 1),
+(2, 'José', 'Rua Azevedo', 'jose@gmail.com', '1234', 3, 0),
+(3, 'Restaurante Moenda', 'Rua Veneza', 'restaurante@gmail.com', '1234', 0, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -124,7 +126,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `coletas`
 --
 ALTER TABLE `coletas`
-  MODIFY `id_coleta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_coleta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `empresa`
@@ -136,7 +138,7 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para tabelas despejadas
@@ -146,8 +148,8 @@ ALTER TABLE `usuarios`
 -- Restrições para tabelas `coletas`
 --
 ALTER TABLE `coletas`
-  ADD CONSTRAINT `coletas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
-  ADD CONSTRAINT `coletas_ibfk_2` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`);
+  ADD CONSTRAINT `coletas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `coletas_ibfk_2` FOREIGN KEY (`id_empresa`) REFERENCES `empresa` (`id_empresa`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

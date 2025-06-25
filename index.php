@@ -231,7 +231,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
     <h3 class="titulo">Certeza que deseja excluir sua conta?</h3>
     <form action="php/excluir_conta.php" method="post">
       <div class="modal-actions">
-      <button type="button" class="btn-close-modal" data-modal="modal-3">Cancelar</button>
+      <button type="button" class="btn-close-modal" data-modal="modal-8">Cancelar</button>
       <p><input type="submit" value="Confirmar"></p>
       </div>
     </form>
