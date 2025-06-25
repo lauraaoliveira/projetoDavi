@@ -122,8 +122,8 @@ try {
 
       <input type="hidden" name="quantidade" id="quantidade" value="1">
       <div class="modal-actions">
-        <p><input type="submit" value="Confirmar"></p>
         <button data-modal="modal-5" class="btn-close-modal">Cancelar</button>
+        <p><input type="submit" value="Confirmar"></p>
       </div>
 
     </form>
@@ -132,16 +132,16 @@ try {
   <!-- SOLICITAR COLETA -->
   <dialog id="modal-4">
   
-  <h2>Modal para solicitar a coleta</h1>
-  <button class="btn-close-modal" data-modal="modal-4">X</button>
+  <h3 class="titulo">Solicitar coleta</h3>
+  <!-- <button class="btn-close-modal" data-modal="modal-4">X</button> -->
 
   <form action="php/usuario/solicitar_coleta.php" method="post">
-    <h2> Você irá solicitar a coleta para <?php echo $qtd_oleo?> <?php echo $qtd_oleo == 1? "garrafa" : "garrafas"?></h2>
-    <p>
-      <input type="submit" value="confirmar">
-    </p>
+    <h4 class="solicita-coleta"> Você confirma a solicitação para coleta de <?php echo $qtd_oleo?> <?php echo $qtd_oleo == 1? "litro de óleo?" : "litros de óleo?"?></h4>
+    <div class="modal-actions">
+      <button class="btn-close-modal" data-modal="modal-4">Cancelar</button>
+      <p><input type="submit" value="confirmar"></p>
+    </div>
   </form>
-    <button class="btn-close-modal" data-modal="modal-4">Cancelar</button>
     
   </dialog>
 <script src="js/modal.js"></script>

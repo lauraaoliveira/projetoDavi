@@ -40,7 +40,6 @@ h3 span {
 
 h4 {
   font-size: 1.4em;
-  font-size: 1.4em;
   font-weight: 900;
   line-height: 1.3em;
   margin-bottom: 0.4em;
@@ -52,7 +51,6 @@ h5 {
   font-weight: 400;
   max-width: 40%;
   line-height: 1.1em;
-  line-height: 1.3em;
   margin-bottom: 0.4em;
 }
 
@@ -272,78 +270,6 @@ nav {
 }
 
 
-/* A partir daqui consta o controle da barra do usuário RESIDÊNCIA*/
-
-/*  ––––––––––––– Oculta a barra de usuário quando não estiver logado –––––––––––––  */
-/* .residencia {
-  display: none;
-}
-.logado {
-  display: none;
-}
-.hero {
-  margin-top: 5rem;
-} */
-
-
-
-/* Abaixo constam 3 opções de status quando LOGADO, onde apenas uma delas deve ser habilitada */
-
-/* 1. ––––––––––––– Quando não houver coleta solicitada ––––––––––––– */
-
-/* .btn-login {
-  display: none;
-} 
-.coleta-aceita {
-  display: none;
-}
-.coleta-esperando {
-  display: none;
-}
-.hero {
-  margin-top: 10rem;
-} */
-
-/*  2. ––––––––––––– Quando a coleta foi solicitada e não estiver aceita –––––––––––––  */
-
-/* .btn-login {
-  display: none;
-}
-.coleta-aceita {
-  display: none;
-}
-.solicita {
-  display: none;
-}
-.coleta-zerada {
-  display: none;
-}
-.hero {
-  margin-top: 10rem;
-} */
-
-/*  3. ––––––––––––– Quando a coleta foi solicitada e for aceita –––––––––––––  */
-
-/* .btn-login {
-  display: none;
-}
-.coleta-zerada {
-  display: none;
-}
-.coleta-esperando {
-  display: none;
-}
-.solicita {
-  display: none;
-}
-.hero {
-  margin-top: 10rem;
-} */
-
-/* Fim das instruções de controle da barra do usuário RESIDÊNCIA*/
-
-
-
 /* Hero - Seção principal, com chamada para ação*/
 .hero {
   position: relative;
@@ -386,7 +312,6 @@ nav {
 .btn-cta {
   display: inline-block;
   background: #ffe600;
-  color: #007029;
   color: #007029;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
@@ -449,6 +374,24 @@ padding-top: 3.5rem;
   background-color: #3e8e3e;
   transition: background-color 0.3s, color 0.3s, position 0.3s;
   transition: background-color 0.3s, color 0.3s, position 0.3s;
+}
+
+/* Estilo dos botões dentro dos cards */
+button[data-modal="modal-2"], button[data-modal="modal-3"] {
+    background-color: #faf1ee;
+    border: 2px solid #3e8e3e; /* Borda sólida com cor */
+    color: #3e8e3e;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button[data-modal="modal-2"]:hover, button[data-modal="modal-3"]:hover {
+    background-color: #bdcf00;
+    color: #00471a;
 }
 
 .divisor {

@@ -151,8 +151,8 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
     <!-- Coluna direita: formulário -->
     <form class="contact-form container">
       <div class="form-row">
-        <input type="text" placeholder="Nome *" required>
-        <input type="text" placeholder="Sobrenome *" required>
+        <input type="text" placeholder="Nome*" required>
+        <input type="text" placeholder="Sobrenome*" required>
       </div>
       <input type="email" placeholder="E-mail*" required>
       <textarea placeholder="Mensagem*" required></textarea>
@@ -177,49 +177,60 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
   </footer>
 
 
-  <!-- ======= ++++++++++++MODAIS+++++++++++++++=============== -->
+  <!-- ========== ++++++++++++MODAIS+++++++++++++++ ============== -->
 
-  <!-- ================== MODAL PARA FAZER LOGIN ================= -->
+  <!-- =============== MODAL PARA FAZER LOGIN ==================== -->
   <dialog id="modal-1">
-     <form action="php/login.php" method="post">
+    <form action="php/login.php" method="post">
+    <h3 class="titulo">Faça o login</h3>
 
-      <p>
-        <input type="radio" name="tipo" value="usuario" required> Usuário
-        <input type="radio" name="tipo" value="empresa" required> Empresa
-      </p>
-
+    <div class="modal-form">
       <p><input type="email" name="email" placeholder="Email" required></p>
       <p><input type="password" name="senha" placeholder="Senha" required></p>
+    </div>
+    <p class="tipo">
+      <input type="radio" name="tipo" value="usuario" required checked> Usuário
+      <input type="radio" name="tipo" value="empresa" required> Empresa
+    </p>
+    <div class="modal-actions">
       <p><input type="submit" value="Entrar"></p>
+      <button class="btn-close-modal" data-modal="modal-1">Cancelar</button>
+    </div>
     </form>
-    <button class="btn-close-modal" data-modal="modal-1">X</button>
     
   </dialog>
 
  <!-- ================== MODAL PARA CADASTRAR EMPRESA ================= -->
  <dialog id="modal-2">
-   <h3 class="titulo">Cadastro de empresa</h3>
-   <button class="btn-close-modal" data-modal="modal-2">X</button>
-
-   <form action="php/empresa/cadastrar_empresa.php" method="post">   
-     <p><input type="text" name="nome_fantasia" placeholder="Nome fantasia" required></p>
-     <p><input type="text" name="logradouro_empresa" placeholder="Logradouro" required></p>
-     <p><input type="email" name="email_empresa" placeholder="Email" required></p>
-     <p><input type="password" name="senha" placeholder="Senha" required></p>
-     <p><input type="submit" value="Registar empresa"></p>
+    <h3 class="titulo">Cadastro de empresa</h3>
+    <form action="php/empresa/cadastrar_empresa.php" method="post">
+      <div class="modal-form">
+        <p><input type="text" name="nome_fantasia" placeholder="Nome fantasia*" required></p>
+        <p><input type="text" name="logradouro_empresa" placeholder="Logradouro*" required></p>
+        <p><input type="email" name="email_empresa" placeholder="Email*" required></p>
+        <p><input type="password" name="senha" placeholder="Senha*" required></p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-close-modal" data-modal="modal-2">Cancelar</button>
+        <p><input type="submit" value="Registar empresa"></p>
+      </div>
     </form>
   </dialog>
+
   <!-- ================== MODAL PARA CADASTRAR USUARIO ================= -->
-  <button class="btn-open-modal" data-modal="modal-3">Cadastrar usuário</button>
   <dialog id="modal-3">
-    <h2>Cadastro de usuário</h2>
-    <button class="btn-close-modal" data-modal="modal-3">X</button>
+    <h3 class="titulo">Cadastro de usuário</h3>
     <form action="php/usuario/cadastrar_usuario.php" method="post">
-      <p><input type="text" name="nome" placeholder="Nome" required></p>
-      <p><input type="text" name="logradouro_usuario" placeholder="Logradouro" required></p>
-      <p><input type="email" name="email" placeholder="Email" required></p>
-      <p><input type="password" name="senha" placeholder="Senha" required></p>
-      <p><input type="submit" value="Cadastrar"></p>
+      <div class="modal-form">
+        <p><input type="text" name="nome" placeholder="Nome*" required></p>
+        <p><input type="text" name="logradouro_usuario" placeholder="Logradouro*" required></p>
+        <p><input type="email" name="email" placeholder="Email*" required></p>
+        <p><input type="password" name="senha" placeholder="Senha*" required></p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-close-modal" data-modal="modal-3">Cancelar</button>
+        <p><input type="submit" value="Cadastrar"></p>
+      </div>
     </form>
   </dialog>
   <script src="js/modal.js"></script>

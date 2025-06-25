@@ -57,6 +57,7 @@ dialog::backdrop { /* Estilo para o backdrop (o fundo escuro opaco atrás do mod
 .modal-actions input[type="submit"] {
     background-color: #3e8e3e; /* Cor de fundo do botão de confirmação */
     color: white; /* Cor do texto do botão de confirmação */
+    border: 2px solid #3e8e3e; /* Borda sólida com cor */
     border-radius: 5px; /* Bordas arredondadas */
     padding: 10px 20px; /* Espaçamento interno do botão */
     font-size: 1em; /* Tamanho da fonte do botão */
@@ -93,7 +94,6 @@ dialog::backdrop { /* Estilo para o backdrop (o fundo escuro opaco atrás do mod
 }
 
 
-
 /* –––––– Modal de cadastro de óleo –––––– */
 
 .contador {
@@ -124,10 +124,35 @@ dialog::backdrop { /* Estilo para o backdrop (o fundo escuro opaco atrás do mod
   transform: translateY(1px); /* Pequeno efeito de "pressionar" */
 }
 
-/* –––––– Modal de cadastro de usuário –––––– */
+/* –––––– Estilização para os modais com "form" –––––– */
 
-#modal-4 form {
+.modal-form {
+    display: flex; /* Flexbox para organizar os elementos do formulário */
+    flex-direction: column; /* Coloca os elementos em coluna */
+    gap: 15px; /* Espaço entre os elementos do formulário */
+    padding: 20px; /* Espaçamento interno do formulário */
+}
+
+.modal-form input {
+    width: 100%; /* Faz os inputs ocuparem toda a largura disponível */
+    padding: 10px; /* Espaçamento interno dos inputs */
+    border: 1px solid #ccc; /* Borda cinza clara */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 1em; /* Tamanho da fonte dos inputs */
+    box-sizing: border-box; /* Inclui padding e border na largura total do input */
+}
+
+.tipo { /* Estilo para o seletor de tipo de usuário */
     display: flex;
-    flex-direction: column; /* Coloca os campos do formulário em coluna */
-    gap: 10px; /* Espaço entre os campos do formulário */
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 0 auto 20px auto; /* Centraliza o seletor */
+}
+
+.solicita-coleta {
+    font-size: 1.2em;
+    color: #58595b;
+    margin: 20px 50px;
+    text-align: center;
 }
