@@ -42,11 +42,13 @@ try {
         $confirmado_empresa = $resultado['confirmacao_empresa'];
         $nome_empresa_aceitou = $resultado['nome_fantasia'];
     }
-
-} catch (PDOException $e) {
+    
+  } catch (PDOException $e) {
     echo "Erro: " . $e->getMessage();
-}
-?>
+  }
+  ?>
+
+  <!-- =========== CONTROLE DO BOTÃO DE CONFIRMAÇÃO DE COLETA ================= -->
 
 <?php
     $botaoDisabled = true;
@@ -59,7 +61,7 @@ try {
           $botaoTexto = "Aguardando confirmação da empresa";
           $botaoDisabled = true;
         } 
-    }
+      }
     ?>
 
 <div class="residencia">
@@ -92,15 +94,8 @@ try {
       <?php if(!$solicitado && $qtd_oleo > 0):?>
         <button class="btn-open-modal botao" data-modal="modal-4">Solicitar coleta</button>
       <?php endif; ?>
-    <!-- =========== CONTROLE DO BOTÃO DE CONFIRMAÇÃO DE COLETA ================= -->
-    
-
-    
   </div>
 </div>
-
-
-
 
 <!-- ========================MODAIS DO USUARIO======================== -->
 
