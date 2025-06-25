@@ -226,7 +226,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
       </div>
     </form>
   </dialog>
-  
+
 <!-- =============== MODAL PARA EXCLUIR CONTA ==================== -->
   <dialog id="modal-8">
     <h3 class="titulo">Certeza que deseja excluir sua conta?</h3>
@@ -238,5 +238,6 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
     </form>
   </dialog>
   <script src="js/modal.js"></script>
+  <script src="js/adjustLayout.js"></script>
 </body>
 </html>

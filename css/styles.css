@@ -63,19 +63,20 @@ h5 {
 
 /* Header */
 header {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
   background-color: #3e8e3e;
   color: white;
+  position: fixed;
+  z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
 }
 
 .header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 20px;
 }
 
 nav {
@@ -271,15 +272,27 @@ button[data-modal="modal-8"] {
 
 
 /* Hero - Seção principal, com chamada para ação*/
+/* .hero {
+  position: relative;
+  background: url('../img/Home.jpg') center center / cover no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  color: white; */
+  /* overflow: hidden; */
+  /* margin-bottom: 4em;
+} */
+
+
 .hero {
   position: relative;
   background: url('../img/Home.jpg') center center / cover no-repeat;
-  height: 80vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   color: white;
-  /* overflow: hidden; */
-  /* margin-bottom: 4em; */
+  /* margin-top: 80px; */ /* <--- Add a fixed value for margin-top initially */
+  /* Remove these comments if you want these properties */
   /* overflow: hidden; */
   /* margin-bottom: 4em; */
 }
@@ -295,8 +308,6 @@ button[data-modal="modal-8"] {
 
 /* Conteúdo por cima do overlay */
 .hero-content {
-  position: absolute;
-  margin-left: 15%;
   position: absolute;
   margin-left: 15%;
   z-index: 2;
