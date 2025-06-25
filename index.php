@@ -26,6 +26,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Novolhar - Processamento de Óleo</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="modal.css">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -45,24 +46,25 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
         </ul>
 
         <?php if(!$tipo):?>
-          <button class="btn-open-modal" data-modal="modal-1">Login</button>
-          
+          <button class="btn-open-modal btnlogin" data-modal="modal-1">Login</button>
           
           <?php else:?>
-            <p class="usuario">Olá, <?php echo $nome?></p>
-            <form action="../excluir_conta.php" method="post">
-              <p><input type="submit" value="Excluir conta"></p>
-            </form>
-            <p><a href="php/logout.php">Sair</a></p>
+            <div class="logado">
+              <p class="usuario">Olá, <?php echo $nome?></p>
+              <form action="../excluir_conta.php" method="post">
+                <p class="link"><input type="submit" value="Excluir conta"></p>
+              </form>
+              <p class="link"><a href="php/logout.php">Sair</a></p>
+            </div>
         <?php endif; ?>
       </nav>
     </div>
 
-    <style>
+    <!-- <style>
       .hero {
         margin-top: <?php echo isset($_SESSION['tipo']) ? '8rem' : '5rem'; ?>;
       }
-    </style>
+    </style> -->
 
     <?php
       if ($tipo == 'usuario') {
@@ -71,24 +73,6 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
           include 'barra_empresa.php';
       }
     ?>
-
-    
-    
-    <!-- Barra do usuário "residência" com informações de coleta -->
-    <!-- <div class="residencia">
-      <div class="residencia-content container">
-        <div class="coleta-aceita">
-          <img src="img/coleta.svg" alt="Coleta">
-          <h5>[nomeEmpresa] está a caminho para coleta de óleo em sua residência.</h5>
-          <a href="#" class="botao confirma">Confirmar coleta</a>
-        </div>
-        <h5 class="coleta-zerada">Você não possui coletas solicitas.</h5>
-        <h5 class="coleta-esperando">Há uma coleta pendente à espera de confirmação.</h5>
-        <h5>Você possui [n] litros de óleo cadastrados.</h5>
-        <a href="#" class="botao cadastro">Cadastrar óleo</a>
-        <a href="#" class="solicita botao">Solicitar coleta</a>
-      </div>
-    </div> -->
   </header>
   
 
@@ -99,6 +83,12 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
       <p>Nós da Novolhar estamos comprometidos em preservar os nossos recursos naturais.</p>
       <a href="#" class="btn-cta">Junte-se a nós</a>
     </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h3 class="sobre"><span>O que é a Novolhar?</span></h3>
+      <p>A Novolhar é uma empresa dedicada ao processamento de óleo de cozinha usado, transformando-o em produtos sustentáveis e contribuindo para a preservação do meio ambiente. Nosso objetivo é reduzir o descarte inadequado de óleo, promovendo a reciclagem e a conscientização sobre a importância desse recurso.</p>
   </section>
 
   <!-- Seção de serviços -->
@@ -208,7 +198,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
 
  <!-- ================== MODAL PARA CADASTRAR EMPRESA ================= -->
  <dialog id="modal-2">
-   <h2>Cadastre de empresa</h2>
+   <h3 class="titulo">Cadastro de empresa</h3>
    <button class="btn-close-modal" data-modal="modal-2">X</button>
 
    <form action="php/empresa/cadastrar_empresa.php" method="post">   
@@ -233,8 +223,5 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
     </form>
   </dialog>
   <script src="js/modal.js"></script>
-
-  
-  
 </body>
 </html>

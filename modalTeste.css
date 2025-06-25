@@ -1,0 +1,54 @@
+
+
+#modal-5 form,
+#modal-4 form {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    gap: 10px; /* Espaço entre os elementos do formulário */
+}
+
+#modal-5 form div { /* Exemplo: se você agrupar os botões de +/- */
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+#modal-5 button,
+#modal-4 button,
+#modal-5 input[type="submit"],
+#modal-4 input[type="submit"] {
+    /* Estilos para botões e inputs de submit dentro dos modais */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+#modal-5 input[type="submit"],
+#modal-4 input[type="submit"] {
+    background-color: #007029;
+    color: white; 
+
+}
+
+#modal-5 input[type="submit"]:hover,
+#modal-4 input[type="submit"]:hover {
+    background-color: #00471a;
+}
+
+.btn-close-modal {
+    background-color: rgb(208, 208, 208); /* Fundo transparente */
+    border-color: #007029;
+    color: #007029;
+    align-self: flex-end; /* Alinha o botão X no canto superior direito */
+    margin-top: -10px; /* Ajuste para mover o X para cima, se necessário */
+    margin-right: -10px; /* Ajuste para mover o X para a direita, se necessário */
+}
+
+.btn-close-modal:hover {
+    background-color: #a2a2a2;
+    color: white;
+}

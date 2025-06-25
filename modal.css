@@ -1,0 +1,133 @@
+/* Estilos adicionais para o modal */
+
+dialog { /* Estilos gerais para os modais */
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+    max-width: 500px; /* Largura máxima para o modal */
+    padding: 20px;
+    width: 90%; /* Ocupa 90% da largura da viewport, mas não mais que max-width */
+    z-index: 1001; /* Garante que o modal esteja acima de outros elementos */
+
+    /* Centralização usando 'position: fixed' e transform */
+    left: 50%; /* Move a esquerda do modal para o centro horizontal */
+    position: fixed;
+    top: 50%; /* Move o topo do modal para o centro vertical */
+    transform: translate(-50%, -50%); /* Ajusta o modal de volta em 50% da sua própria largura/altura */
+}
+
+dialog::backdrop { /* Estilo para o backdrop (o fundo escuro opaco atrás do modal) */
+    background-color: rgba(0, 0, 0, 0.5); /* Cor preta com 50% de opacidade */
+    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+}
+
+.titulo { /* Estilo para o título dos modais */
+    color: #007029; /* Cor do texto do título */
+    font-size: 1.5em; /* Tamanho da fonte do título */
+    text-align: center; /* Centraliza o texto do título */
+}
+
+.modal-actions input[type="submit"],
+.modal-actions .btn-close-modal {  /* Resetando estilos PHP padrão dos botões */
+
+    -webkit-appearance: none;   /* Para navegadores Webkit (Chrome, Safari, Edge) */
+    -moz-appearance: none;      /* Para navegadores Mozilla (Firefox) */
+    appearance: none;           /* Propriedade padrão */
+    border: none;               /* Remove a borda padrão */
+    background-color: transparent; /* Remove a cor de fundo padrão */
+    padding: 0;                 /* Remove o padding padrão */
+    margin: 0;                  /* Remove a margem padrão */
+    font-family: inherit;       /* Herda a fonte do elemento pai */
+    font-size: inherit;         /* Herda o tamanho da fonte do elemento pai */
+    cursor: pointer;            /* Altera o cursor para indicar que é clicável */
+    line-height: normal;        /* Reseta o line-height que alguns navegadores aplicam */
+    text-decoration: none;      /* Remove sublinhado (se houver, como em alguns botões) */
+    text-align: center;         /* Alinha o texto ao centro */
+    box-sizing: border-box;     /* Garante que padding e border sejam incluídos na largura/altura */
+}
+
+.modal-actions { /*Estilos para os botões "Confirmar" e "Cancelar" do modal */
+    display: flex; /* Flexbox para alinhar os botões */
+    gap: 20px; /* Espaço entre os botões */
+    padding: 10px 20px;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+}
+
+.modal-actions input[type="submit"] {
+    background-color: #3e8e3e; /* Cor de fundo do botão de confirmação */
+    color: white; /* Cor do texto do botão de confirmação */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    font-size: 1em; /* Tamanho da fonte do botão */
+    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+}
+
+.modal-actions input[type="submit"]:hover {
+    background-color: #007029; /* Cor de fundo ao passar o mouse */
+}
+
+.modal-actions input[type="submit"]:active {
+    background-color: #00471a; /* Cor de fundo ao clicar */
+    transform: translateY(1px); /* Pequeno efeito de "pressionar" */
+}
+
+.modal-actions .btn-close-modal {
+    background-color: none;
+    border: 2px solid #3e8e3e; /* Borda sólida com cor */
+    color: #3e8e3e; /* Cor do texto verde */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transições para hover */
+}
+
+.modal-actions .btn-close-modal:hover {
+    background-color: #e0e0e0; /* Fundo mais escuro ao passar o mouse */
+    border-color: #00471a; /* Borda mais escura */
+    color: #00471a; /* Texto mais escuro */
+}
+
+.modal-actions .btn-close-modal:active {
+    background-color: #ccc;
+    transform: translateY(1px);
+}
+
+
+
+/* –––––– Modal de cadastro de óleo –––––– */
+
+.contador {
+    align-content: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 30px;
+}
+
+.reduzir, .aumentar {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    background-color: #3e8e3e;
+    color: white;
+}
+
+.reduzir:hover, .aumentar:hover {
+    background-color: #007029;
+}
+
+.reduzir:active, .aumentar:active {
+  background-color: #00471a; /* Cor de fundo ainda mais escura ao clicar */
+  transform: translateY(1px); /* Pequeno efeito de "pressionar" */
+}
+
+/* –––––– Modal de cadastro de usuário –––––– */
+
+#modal-4 form {
+    display: flex;
+    flex-direction: column; /* Coloca os campos do formulário em coluna */
+    gap: 10px; /* Espaço entre os campos do formulário */
+}

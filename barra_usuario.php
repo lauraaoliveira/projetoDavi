@@ -48,8 +48,8 @@ try {
 }
 ?>
 
-  <div class="residencia">
-    <div class="residencia-content container">
+<div class="residencia">
+  <div class="residencia-content container">
 
     <?php if($status_coleta == 'aceita'): ?>
       <div>
@@ -63,7 +63,7 @@ try {
       <h5>Você não possui coletas solicitadas.</h5>
     <?php endif; ?>
 
-    <h5>Você possui <?php echo $qtd_oleo; ?> litros de óleo cadastrados.</h5>
+    <h5 class="qtd-oleo">Você possui <?php echo $qtd_oleo; ?> litros de óleo cadastrados.</h5>
     <button class="btn-open-modal botao" data-modal="modal-5">Cadastrar óleo</button>
     <button class="btn-open-modal botao" data-modal="modal-4" 
       <?php if($solicitado || $qtd_oleo == 0  ) echo 'disabled'; ?>
@@ -101,7 +101,6 @@ try {
             <?php echo $botaoTexto; ?>
         </button>
     </form>
-
   </div>
 </div>
 
@@ -112,18 +111,21 @@ try {
 
 <!-- CADASTRAR OLEO -->
 <dialog id="modal-5">
-    <p>Você tem: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo": " garrafas de óleo"?></p>
+    <h3 class="titulo">Você tem: <?php echo $qtd_oleo; ?><?php echo $qtd_oleo== 1? " garrafa de óleo": " garrafas de óleo"?></h3>
     
     <form action="php/usuario/adicionar_oleo.php" method="post">
-
-      <button type="button" onclick="alterarQuantidade(-1)">- 1</button>
-      <p>Adicionar <span id="contador">1</span> garrafas</p>
-      <button type="button" onclick="alterarQuantidade(1)">+ 1</button>
+      <div class="contador">
+        <button type="button" onclick="alterarQuantidade(-1)" class="reduzir">- 1</button>
+        <p>Adicionar <span id="contador">1</span> garrafas</p>
+        <button type="button" onclick="alterarQuantidade(1)" class="aumentar">+ 1</button>
+      </div>
 
       <input type="hidden" name="quantidade" id="quantidade" value="1">
+      <div class="modal-actions">
+        <p><input type="submit" value="Confirmar"></p>
+        <button data-modal="modal-5" class="btn-close-modal">Cancelar</button>
+      </div>
 
-      <p><input type="submit" value="Confirmar"></p>
-      <button class="btn-close-modal" data-modal="modal-5">Cancelar</button>
     </form>
   </dialog>
 
