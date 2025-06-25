@@ -179,7 +179,7 @@ nav {
   gap: 0.5rem; /* espaço entre os itens */
   padding: 1rem;
   color: white;
- text-align: right;
+  text-align: right;
 }
 
 .usuario {
@@ -188,7 +188,7 @@ nav {
   font-weight: bold;
 }
 
-.link input[type="submit"] {
+button[data-modal="modal-8"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -214,12 +214,12 @@ nav {
     transition: color 0.3s ease;
   }
 
-.link input[type="submit"]:hover {
+.link input[type="submit"]:hover, button[data-modal="modal-8"]:hover {
   color: #bdcf00;
   transition: color 0.3s ease;
 }
 
-.link:hover {
+.link:hover, button[data-modal="modal-8"]:hover {
   color: #bdcf00;
 }
 

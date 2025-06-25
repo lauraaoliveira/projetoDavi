@@ -52,7 +52,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
           <?php else:?>
             <div class="logado">
               <p class="usuario">Olá, <?php echo $nome?></p>
-              <button class="btn-open-modal btnlogin" data-modal="modal-8">Excluir conta</button>
+              <button class="btn-open-modal" data-modal="modal-8">Excluir conta</button>
               <p class="link"><a href="php/logout.php">Sair</a></p>
             </div>
         <?php endif; ?>
@@ -226,6 +226,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
       </div>
     </form>
   </dialog>
+  
 <!-- =============== MODAL PARA EXCLUIR CONTA ==================== -->
   <dialog id="modal-8">
     <h3 class="titulo">Certeza que deseja excluir sua conta?</h3>
