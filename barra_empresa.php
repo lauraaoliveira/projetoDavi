@@ -97,4 +97,3 @@ try {
     <?php endif; ?>
   </dialog>
 
-<script src="js/modal.js"></script>
