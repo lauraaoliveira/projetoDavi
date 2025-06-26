@@ -2,10 +2,8 @@ const btnsOpenModal = document.querySelectorAll(".btn-open-modal");
 
 btnsOpenModal.forEach(button =>{
   button.addEventListener('click', ()=>{
-    
-    const modalId = button.getAttribute("data-modal");
-    const modal = document.getElementById(modalId);
-    console.log("TESTE")
+    let modalId = button.getAttribute("data-modal");
+    let modal = document.getElementById(modalId);
     modal.showModal();
   });
 });
@@ -13,10 +11,9 @@ btnsOpenModal.forEach(button =>{
 const btnsCloseModal = document.querySelectorAll(".btn-close-modal");
 
 btnsCloseModal.forEach(button =>{
-  button.addEventListener('click', ()=>{
-    console.log(modalId)
-    const modalId = button.getAttribute("data-modal");
-    const modal = document.getElementById(modalId);
+  button.addEventListener('click', (event) => {
+    let modalId = event.currentTarget.getAttribute("data-modal");
+    let modal = document.getElementById(modalId);
     modal.close();
-  })
-})
+  });
+});
