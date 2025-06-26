@@ -97,14 +97,18 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
         <img src="img/oleo_1.png" alt="Cadastro de residência">
         <h4>Entregue o seu óleo para ser coletado</h4>
         <p>Clique aqui e disponibilize o seu óleo usado para a realização da coleta</p>
-        <button class="btn-open-modal" data-modal="modal-3">Cadastrar usuario</button>
+          <?php if(!$tipo):?>
+            <button class="btn-open-modal" data-modal="modal-3">Cadastrar usuario</button>
+          <?php endif;?>
       </div>
 
       <div class="service-card">
         <img src="img/oleo_2.png" alt="Cadastro de empresa">
         <h4>Realize coletas de óleo em residências</h4>
         <p>Retire os volumes de óleo disponibilizados pelas residências</p>
-        <button class="btn-open-modal" data-modal="modal-2">Cadastrar empresa</button>
+          <?php if(!$tipo):?>
+            <button class="btn-open-modal" data-modal="modal-2">Cadastrar empresa</button>
+          <?php endif;?>
       </div>
 
       <div class="service-card">
