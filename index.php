@@ -56,6 +56,11 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
               <p class="link"><a href="php/logout.php">Sair</a></p>
             </div>
         <?php endif; ?>
+        <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
       </nav>
     </div>
 
@@ -239,5 +244,6 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
   </dialog>
   <script src="js/modal.js"></script>
   <script src="js/adjustLayout.js"></script>
+  <script src="js/mobileMenu.js"></script>
 </body>
 </html>
