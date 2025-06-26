@@ -79,7 +79,7 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
     <div class="container hero-content">
       <h2>Junte-se a nós para ajudar a preservar o meio ambiente</h2>
       <p>Nós da Novolhar estamos comprometidos em preservar os nossos recursos naturais.</p>
-      <a href="#" class="btn-cta">Junte-se a nós</a>
+      <a href="#servicos" class="btn-cta">Junte-se a nós</a>
     </div>
   </section>
 
