@@ -68,7 +68,7 @@ try {
   <div class="residencia-content container">
 
     <?php if($status_coleta == 'aceita'): ?>
-      <div>
+      <div class="residencia-content-coleta">
         <img src="img/coleta.svg" alt="Coleta">
         <h5><strong><?php echo $nome_empresa_aceitou; ?></strong> <?php echo $confirmado_empresa?  "está aguardando sua confirmação" : "está a caminho para coleta de óleo em sua residência." ?></h5>
 

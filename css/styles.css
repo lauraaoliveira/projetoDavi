@@ -251,6 +251,12 @@ button[data-modal="modal-8"] {
   justify-content: flex-start; /* Alinha os itens lado a lado no início do container (esquerda) */
 }
 
+.residencia-content-coleta {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espaçamento entre os itens */
+}
+
 .qtd-oleo {
   margin-left: auto;
 }
@@ -625,7 +631,11 @@ footer {
 
   /* Menu mobile */
 
-  .nav-links, .btnlogin, .logado {
+  .nav-links {
+    display: none;
+  }
+
+  .btnlogin, .logado {
     display: none; /* Oculta por padrão em mobile */
     flex-direction: column;
     width: 100%;
@@ -645,13 +655,13 @@ footer {
     margin: 10px 0; /* Espaçamento vertical para os itens do menu */
   }
 
-  .nav-links a, .logado .usuario, .logado .link a, .logado .link input[type="submit"] {
+ .logado .usuario, .logado .link a, .logado .link input[type="submit"] {
     padding: 10px 0;
     display: block; /* Garante que os links ocupem a largura total */
   }
 
   /* Mostrar o menu quando a classe 'active' for adicionada via JS */
-  nav.active .nav-links, nav.active .btnlogin, nav.active .logado {
+  nav.active .btnlogin, nav.active .logado {
     display: flex; /* Exibe o menu */
     transform: translateX(0); /* Desliza o menu para a posição visível */
   }

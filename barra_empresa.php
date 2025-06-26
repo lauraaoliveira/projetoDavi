@@ -58,7 +58,9 @@ try {
             <?php if (!$coleta['confirmacao_empresa']): ?>
               <form action="php/empresa/confirmar_coleta_empresa.php" method="post">
                 <input type="hidden" name="id_coleta" value="<?php echo $coleta['id_coleta']; ?>">
-                <button type="submit">Confirmar coleta</button>
+                <div class="modal-actions">
+                  <button type="submit">Confirmar coleta</button>
+                </div>
               </form>
               
             <?php else: ?>
@@ -76,6 +78,9 @@ try {
 
 
   <dialog id="modal-6">
+    <div>
+
+    </div>
     <?php if (count($coletasPendentes) > 0): ?>
       <ul>
         <?php foreach ($coletasPendentes as $coleta): ?>
