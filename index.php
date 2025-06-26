@@ -83,11 +83,13 @@ $nome = isset($_SESSION['nome']) ? $_SESSION['nome'] : null;
     </div>
   </section>
 
-  <section>
-    <div class="container">
-      <h3 class="sobre"><span>O que é a Novolhar?</span></h3>
-      <p>A Novolhar é uma empresa dedicada ao processamento de óleo de cozinha usado, transformando-o em produtos sustentáveis e contribuindo para a preservação do meio ambiente. Nosso objetivo é reduzir o descarte inadequado de óleo, promovendo a reciclagem e a conscientização sobre a importância desse recurso.</p>
+  <section class="sobre container">
+    <div>
+      <h3 class="sobre"><span>O QUE É A NOVOLHAR?</span></h3>
+      <p class="sobre">A Novolhar é uma empresa dedicada ao processamento de óleo de cozinha usado, transformando-o em produtos sustentáveis e contribuindo para a preservação do meio ambiente. Nosso objetivo é reduzir o descarte inadequado de óleo, promovendo a reciclagem e a conscientização sobre a importância desse recurso.</p>
   </section>
+
+    <div class="divisor"></div>
 
   <!-- Seção de serviços -->
   <section class="servicos" id="servicos">

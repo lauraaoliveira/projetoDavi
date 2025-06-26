@@ -245,10 +245,10 @@ button[data-modal="modal-8"] {
 
 .residencia-content.container {
   display: flex;
-  align-items: center; /* alinha verticalmente os itens */
-  /* justify-content: flex-end; */
+  align-items: center;
   flex-wrap: wrap;
-  gap: 1rem; /* espaço entre os itens */
+  gap: 1rem;
+  justify-content: flex-start; /* Alinha os itens lado a lado no início do container (esquerda) */
 }
 
 .qtd-oleo {
@@ -360,15 +360,23 @@ button[data-modal="modal-8"] {
 
 /* Sobre a empresa */
 .sobre {
-  background-color: #fdf4f2;
-  padding: 3rem 0;
+  display: flex;
+  flex-direction: column; /* Necessário para que h3 ocupe sua própria "linha" no fluxo flex */
+  margin: 0 auto;
+  padding: 3rem 0 0 0;
+  width: 80%;
   text-align: center;
+}
+
+.sobre p {
+  margin-bottom: 1rem;
+  font-size: 1.3em;
 }
 
 /* Serviços */
 
 .servicos {
-padding-top: 3.5rem;
+padding-top: 1rem;
 }
 
 .servicos h3 {
@@ -427,7 +435,6 @@ button[data-modal="modal-2"]:hover, button[data-modal="modal-3"]:hover {
 /* Info section */
 .info-content {
   margin-bottom: 5em;
-  margin-bottom: 5em;
   display: flex;
   gap: 2rem;
 }
@@ -458,12 +465,10 @@ button[data-modal="modal-2"]:hover, button[data-modal="modal-3"]:hover {
   color: white;
   background-color: #007029;
   transition: background-color 0.3s, color 0.3s;
-  color: #007029;
   border-radius: 6px;
   font-weight: bold;
   display: inline-block;
   margin-top: 2rem;
-  transition: 0.3s ease;
 }
 
 /* Contact */
@@ -480,8 +485,6 @@ button[data-modal="modal-2"]:hover, button[data-modal="modal-3"]:hover {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  background-color: #fdf4f2;
-  padding: 2rem 0;
 }
 
 /* Coluna esquerda: texto */
@@ -516,18 +519,10 @@ button[data-modal="modal-2"]:hover, button[data-modal="modal-3"]:hover {
 }
 
 /* Inputs e textarea */
-.contact-form input,
-.contact-form textarea {
+.contact-form input, .contact-form textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  padding: 0.75rem 1rem;
   margin-top: 1rem;
-  border: none;
-  border-radius: 10px;
-  background-color: #fff;
-  font-size: 1rem;
-  color: #333;
-  box-shadow: 0 0 0 1px #e0e0e0;
   border: none;
   border-radius: 10px;
   background-color: #fff;
@@ -537,23 +532,15 @@ button[data-modal="modal-2"]:hover, button[data-modal="modal-3"]:hover {
 }
 
 /* Botão */
-/* Botão */
 .btn-submit {
-  margin-top: 1rem;
-  padding: 0.75rem 2rem;
   margin-top: 1rem;
   padding: 0.75rem 2rem;
   background-color: #3e8e3e;
   color: white;
   border: none;
-  border-radius: 6px;
-  border-radius: 6px;
   cursor: pointer;
   font-size: 1em;
   transition: 0.3s;
-
-
-  
   border-radius: 6px;
   text-decoration: none;
 }
@@ -562,15 +549,8 @@ button[data-modal="modal-2"]:hover, button[data-modal="modal-3"]:hover {
   background-color: #255125;
   font-size: 1em;
   transition: 0.3s;
-
-
-  
   border-radius: 6px;
   text-decoration: none;
-}
-
-.btn-submit:hover {
-  background-color: #255125;
 }
 
 /* Footer */
@@ -603,11 +583,8 @@ footer {
 }
 
 .social {
-  align-content: end;
   align-items: center; /* alinha verticalmente os links do menu e o botão de login*/
   display: flex;
-  gap: 1rem;           /* espaço entre os ícones */
-  margin-left: auto;
   gap: 1rem;           /* espaço entre os ícones */
   margin-left: auto;
 }
@@ -643,12 +620,7 @@ footer {
 
   /* Exibir o menu hambúrguer */
   .hamburger-menu {
-      display: flex; /* Mostra o ícone em telas menores */
-  }
-  
-  .footer-content, .info-content {
-    flex-direction: column;
-    text-align: center;
+    display: flex; /* Mostra o ícone em telas menores */
   }
 
   /* Menu mobile */
@@ -679,9 +651,7 @@ footer {
   }
 
   /* Mostrar o menu quando a classe 'active' for adicionada via JS */
-  nav.active .nav-links,
-  nav.active .btnlogin,
-  nav.active .logado {
+  nav.active .nav-links, nav.active .btnlogin, nav.active .logado {
     display: flex; /* Exibe o menu */
     transform: translateX(0); /* Desliza o menu para a posição visível */
   }
@@ -700,15 +670,15 @@ footer {
   }
 
 
-/* Demais itens da página */
+  /* Demais itens da página */
   .form-row {
     flex-direction: column;
   }
 
-    .hero {
-    /* height: auto; */
-    padding: 3rem 1rem;
-    text-align: center;
+  .hero {
+  /* height: auto; */
+  padding: 3rem 1rem;
+  text-align: center;
   }
 
   .hero .container {
@@ -716,22 +686,85 @@ footer {
   }
 
   .hero-content {
+  position: absolute;
+  margin-left: 0;
+  z-index: 2;
+  max-width: 400px;
+}
+
+  .hero-content {
     max-width: 100%;
   }
 
+  .sobre p {
+  margin-bottom: 1rem;
+  font-size: 1em;
+}
+
+  .divisor {
+    border-bottom: 4px solid #bdcf00;
+    margin: 3rem auto; /* Espaçamento entre as seções */
+    width: 50%;
+  }
+
+  /* Info section */
+  .info-content {
+    margin-bottom: 5em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .info-content img {
+    width: 100%;
+  }
+
+  .text {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  /* Itens do formulário de contato */
   .contact-wrapper {
     flex-direction: column;
+  }
+
+  .contact-info {
+    padding: 0;
+    width: 90%;
+    text-align: center;
   }
 
   .form-row {
     flex-direction: column;
   }
-
-  .contact-wrapper {
-    flex-direction: column;
+  
+  /* Footer */
+  .footer-content {
+  flex-direction: column;
+  text-align: center;
   }
 
-  .form-row {
-    flex-direction: column;
+  .footer-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo img {
+    width: 10rem;
+  }
+
+  .copyright {
+    color: #afb3a8;
+    margin: 1em 0; /* Espaçamento vertical */
+  }
+
+  .social {
+    align-items: center; /* alinha verticalmente os links do menu e o botão de login*/
+    display: flex;
+    gap: 1rem;           /* espaço entre os ícones */
+    margin-left: 0;
   }
 }
