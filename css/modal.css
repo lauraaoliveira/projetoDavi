@@ -28,6 +28,90 @@ dialog::backdrop { /* Estilo para o backdrop (o fundo escuro opaco atrás do mod
     text-align: center; /* Centraliza o texto do título */
 }
 
+/* Estilos para os modais de coletas (6 e 7) */
+dialog#modal-6,
+dialog#modal-7 {
+    width: 90%;
+    max-width: 600px;
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: #f9f9f9;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+dialog#modal-6::backdrop,
+dialog#modal-7::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo para a lista de coletas */
+dialog#modal-6 ul,
+dialog#modal-7 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+dialog#modal-6 li,
+dialog#modal-7 li {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para os textos */
+dialog#modal-6 strong,
+dialog#modal-7 strong {
+    color: #2c3e50;
+    display: inline-block;
+    min-width: 100px;
+}
+
+/* Estilo para os botões */
+dialog#modal-6 input[type="submit"],
+dialog#modal-6 button,
+dialog#modal-7 input[type="submit"],
+dialog#modal-7 button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+dialog#modal-6 input[type="submit"]:hover,
+dialog#modal-6 button:hover,
+dialog#modal-7 input[type="submit"]:hover,
+dialog#modal-7 button:hover {
+    background-color: #219653;
+}
+
+/* Estilo para a linha divisória */
+dialog#modal-6 hr,
+dialog#modal-7 hr {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 10px 0;
+}
+
+/* Mensagem quando não há coletas */
+dialog#modal-6 p,
+dialog#modal-7 p {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 20px;
+}
+
 .modal-actions input[type="submit"],
 .modal-actions .btn-close-modal {  /* Resetando estilos PHP padrão dos botões */
 
