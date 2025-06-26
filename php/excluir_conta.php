@@ -24,8 +24,10 @@
 
       $stmt->bindParam(":id",$id, PDO::PARAM_INT);
       if($stmt->execute()){
-        echo "Registro excluído";            
-        header("Location: ../index.html");
+        echo "Registro excluído";
+        session_unset();
+        session_destroy();
+        header("Location: ../index.php");
       }
 
     } catch (PDOException $e) {
