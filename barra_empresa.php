@@ -39,8 +39,8 @@ try {
 
 <div class="residencia">
     <div class="residencia-content container">
-      <button class="btn-open-modal" data-modal="modal-6">Coletas solicitadas</button>
-      <button class="btn-open-modal" data-modal="modal-7">Coletas aceitas</button>
+      <button class="btn-open-modal botao" data-modal="modal-6">Coletas solicitadas</button>
+      <button class="btn-open-modal botao" data-modal="modal-7">Coletas aceitas</button>
   </div>
 </div>
 
@@ -74,8 +74,9 @@ try {
     <?php endif; ?>
   </dialog>
 
+<!-- ===================MODAIS=================== -->
 
-  <dialog id="modal-6">
+  <dialog id="modal-6 ">
     <?php if (count($coletasPendentes) > 0): ?>
       <ul>
         <?php foreach ($coletasPendentes as $coleta): ?>
