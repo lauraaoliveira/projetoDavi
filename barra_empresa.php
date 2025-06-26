@@ -76,7 +76,7 @@ try {
 
 <!-- ===================MODAIS=================== -->
 
-  <dialog id="modal-6 ">
+  <dialog id="modal-6">
     <?php if (count($coletasPendentes) > 0): ?>
       <ul>
         <?php foreach ($coletasPendentes as $coleta): ?>
